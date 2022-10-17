@@ -1,0 +1,76 @@
+---
+title: My Slide Show
+subtitle: '`r Sys.Date()`'
+author: "David Granjon, Novartis"
+format: 
+  revealjs:
+    css: "styles/dracula-ui.css"
+    theme: "dracula.scss"
+    echo: true
+    code-link: true
+    footer: "Novartis, 2022"
+    template-partials: 
+      - title-slide.html
+highlight-style: dracula
+---
+
+```{r setup, include = FALSE}
+library(emo)
+```
+
+## Program
+We're in for 2 hours of **fun**!
+
+- Grab a `r ji("coffee")`
+- Make yourself comfortable `r ji("couch")` or 🧘
+- Ask questions `r ji("question")`  
+
+1. Introduction 				__5  min__
+2. Setup {shinyValidator} __45 min__
+3. Analyse {shinyValidator} report __45 min__
+4. Questions
+
+## Quarto
+
+<div class="drac-box drac-card drac-bg-purple drac-p-sm">
+  <span class="drac-text drac-line-height drac-text-black">Dracula</span>
+</div>
+
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+
+## Bullets
+
+::: {.panel-tabset}
+
+### Tab A
+
+[Preview](https://example.com){preview-link="true"}
+
+### Tab B
+
+Content for `Tab B`
+
+:::
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+#| output-location: column-fragment
+#| code-line-numbers: "|2"
+
+library(ggplot2)
+
+1+1
+```

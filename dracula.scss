@@ -1,0 +1,25 @@
+/*-- scss:defaults --*/
+
+// fonts
+$font-family-sans-serif: "Times", "Abril Text";
+$font-family-monospace: "Fira-code", "Arial";
+
+// colors
+$body-bg: #1d1e26 !default;
+$body-color: #f8f8f2 !default;
+$link-color: $body-color;
+$link-color-hover: #8774e5 !default;
+$selection-bg: #868689 !default;
+
+$code-bg: #272a36 !default;
+$code-block-bg: $code-bg;
+$code-color: $body-color;
+$code-block-border-color: $body-bg;
+
+$tabset-border-color: $body-bg;
+
+// headings
+
+/*-- scss:rules --*/
+
+
