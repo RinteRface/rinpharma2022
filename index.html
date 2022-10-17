@@ -392,7 +392,7 @@
 <section id="title-slide" class="center"><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><script src="./assets/js/custom.js"></script><h1 class="title drac-heading drac-heading-xl drac-text-white">
     An introduction to <span class="drac-badge drac-bg-purple-cyan drac-text-black">{shinyValidator}</span>
   </h1>
-  <br><p class="subtitle">2022-10-17</p>
+  <br><p class="subtitle">2022-10-18</p>
   <p class="author">David Granjon, Novartis</p>
 </section><section><section id="welcome" class="title-slide slide level1 center"><h1>Welcome</h1>
 <p>We’re in for 2 hours of <strong>fun</strong>!</p>
@@ -571,7 +571,57 @@
 <img src="assets/images/svg/sad.svg" width="40%" style="display: block; margin: auto;" class="svg-img r-stretch"><ul>
 <li>There are just so many tools! How to use them properly?</li>
 <li>Is there a way to <strong>automate</strong> all of this? I just don’t have time … 😞</li>
-</ul></section></section><section id="code" class="title-slide slide level1 center"><h1>Code</h1>
+</ul></section><section id="welcome-shinyvalidator" class="slide level2"><h2>Welcome {shinyValidator}</h2>
+<ul>
+<li>Integrate all previous mentioned tools.</li>
+<li>Produces a single HTML report output.</li>
+<li>Flexible.</li>
+</ul></section></section><section><section id="setup-shinyvalidator" class="title-slide slide level1 center"><h1>Setup {shinyValidator}</h1>
+
+</section><section id="golem" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">{golem}</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a href="#cb2-1"></a>path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">"mypkg"</span>) </span>
+<span id="cb2-2" class="hljs-ln-code"><a href="#cb2-2"></a>golem<span class="sc">::</span><span class="fu">create_golem</span>(path)</span>
+<span id="cb2-3" class="hljs-ln-code"><a href="#cb2-3"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="golem-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">{golem}</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb3-1" class="hljs-ln-code"><a href="#cb3-1"></a>path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">"mypkg"</span>) </span>
+<span id="cb3-2" class="hljs-ln-code"><a href="#cb3-2"></a>golem<span class="sc">::</span><span class="fu">create_golem</span>(path)</span>
+<span id="cb3-3" class="hljs-ln-code"><a href="#cb3-3"></a>usethis<span class="sc">::</span><span class="fu">use_mit_license</span>() <span class="co"># or whatever license</span></span>
+<span id="cb3-4" class="hljs-ln-code"><a href="#cb3-4"></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span>
+<span id="cb3-5" class="hljs-ln-code"><a href="#cb3-5"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">"dummy"</span>)</span>
+<span id="cb3-6" class="hljs-ln-code"><a href="#cb3-6"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
+<span id="cb3-7" class="hljs-ln-code"><a href="#cb3-7"></a>usethis<span class="sc">::</span><span class="fu">use_github</span>() <span class="co"># make sure to have a valid GITHUB_PAT</span></span>
+<span id="cb3-8" class="hljs-ln-code"><a href="#cb3-8"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="renv" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">{renv}</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb4-1" class="hljs-ln-code"><a href="#cb4-1"></a><span class="fu">system</span>(<span class="st">"echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' &gt;&gt; .Renviron"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="renv-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">{renv}</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a href="#cb5-1"></a><span class="fu">system</span>(<span class="st">"echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' &gt;&gt; .Renviron"</span>)</span>
+<span id="cb5-2" class="hljs-ln-code"><a href="#cb5-2"></a></span>
+<span id="cb5-3" class="hljs-ln-code"><a href="#cb5-3"></a><span class="co"># SCAN the project and look for dependencies</span></span>
+<span id="cb5-4" class="hljs-ln-code"><a href="#cb5-4"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb5-5" class="hljs-ln-code"><a href="#cb5-5"></a><span class="co"># install missing packages</span></span>
+<span id="cb5-6" class="hljs-ln-code"><a href="#cb5-6"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"&lt;PACKAGE&gt;"</span>)</span>
+<span id="cb5-7" class="hljs-ln-code"><a href="#cb5-7"></a><span class="co"># Capture new dependencies after package installation</span></span>
+<span id="cb5-8" class="hljs-ln-code"><a href="#cb5-8"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="install-shinyvalidator" class="slide level2"><h2>Install {shinyValidator}</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Novartis/shinyValidator"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(shinyValidator)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="do">## At the root of your R package</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">use_validator</span>(<span class="st">"github"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>devtools<span class="sc">::</span><span class="fu">document</span>() <span class="co"># update help</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section><section id="shinyvalidator-step-by-step" class="title-slide slide level1 center"><h1>{shinyValidator}: step by step</h1>
+
+</section><section id="some-graphs-with-mermaid" class="slide level2"><h2>Some graphs with mermaid</h2>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -594,7 +644,7 @@ flowchart LR
 <div class="footer footer-default">
 <p>Novartis, 2022</p>
 </div>
-</section>
+</section></section>
 </div>
   </div>
 

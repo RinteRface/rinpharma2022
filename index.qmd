@@ -199,7 +199,78 @@ Can't we make things easier❓
 - There are just so many tools! How to use them properly?
 - Is there a way to __automate__ all of this? I just don't have time ... 😞
 
-# Code
+## Welcome {shinyValidator}
+
+- Integrate all previous mentioned tools.
+- Produces a single HTML report output.
+- Flexible.
+
+# Setup {shinyValidator}
+
+## {golem} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+path <- file.path(tempdir(), "mypkg") 
+golem::create_golem(path)
+# ...
+```
+
+## {golem} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+path <- file.path(tempdir(), "mypkg") 
+golem::create_golem(path)
+usethis::use_mit_license() # or whatever license
+usethis::use_testthat()
+usethis::use_test("dummy")
+usethis::use_git()
+usethis::use_github() # make sure to have a valid GITHUB_PAT
+# ...
+```
+
+## {renv} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+system("echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' >> .Renviron")
+```
+
+## {renv} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+system("echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' >> .Renviron")
+
+# SCAN the project and look for dependencies
+renv::init()
+# install missing packages
+renv::install("<PACKAGE>")
+# Capture new dependencies after package installation
+renv::snapshot()
+```
+
+## Install {shinyValidator}
+
+```{r}
+#| eval: false
+#| echo: true
+devtools::install_github("Novartis/shinyValidator")
+library(shinyValidator)
+## At the root of your R package
+use_validator("github")
+devtools::document() # update help
+renv::snapshot()
+```
+
+# {shinyValidator}: step by step
+
+## Some graphs with mermaid
 
 ```{mermaid}
 %%{init: {'theme':'dark'}}%%
