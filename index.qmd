@@ -4,11 +4,14 @@ subtitle: '`r Sys.Date()`'
 author: "David Granjon, Novartis"
 format: 
   revealjs:
-    css: "styles/dracula-ui.css"
-    theme: "dracula.scss"
-    echo: true
+    css: "assets/styles/dracula-ui.css"
+    theme: "assets/styles/dracula.scss"
     code-link: true
+    code-copy: true
     footer: "Novartis, 2022"
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
     template-partials: 
       - title-slide.html
 highlight-style: dracula
@@ -16,61 +19,193 @@ highlight-style: dracula
 
 ```{r setup, include = FALSE}
 library(emo)
+library(dRacula)
 ```
 
-## Program
+# Welcome
+
 We're in for 2 hours of **fun**!
 
 - Grab a `r ji("coffee")`
 - Make yourself comfortable `r ji("couch")` or 🧘
 - Ask questions `r ji("question")`  
 
+## Program
+
 1. Introduction 				__5  min__
 2. Setup {shinyValidator} __45 min__
 3. Analyse {shinyValidator} report __45 min__
 4. Questions
 
-## Quarto
+## Workshop Material
 
-<div class="drac-box drac-card drac-bg-purple drac-p-sm">
-  <span class="drac-text drac-line-height drac-text-black">Dracula</span>
-</div>
+- Slides: [https://rinpharma2022.rinterface.com/](https://rinpharma2022.rinterface.com)
+
+Clone this repository with the RStudio IDE or via the command line.
+
+```bash
+git clone https://github.com/RinteRface/rinpharma2022.git
+cd rinpharma2022
+```
+
+Then run `renv::restore()` to install the dependencies.
+
+# Introduction
+
+## Clothes don't make the man
+
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  class = "drac-mt-lg",
+  dracula_p(
+    "Your app may be as beautiful and as cool as you want, it is useless if it does not start/run."
+  )
+)
+```
+
+## From prototype to production
+
+How do we transition❓
 
 :::: {.columns}
 
-::: {.column width="40%"}
-contents...
+::: {.column width="33%"}
+```{r}
+dracula_card(
+  outline = TRUE,
+  dracula_p(
+    dracula_text(
+      "Reliable", 
+      color = "purple",
+      weight = "bold"
+    ), 
+    ": is the app doing what it is intended to do?"
+  )
+)
+```
 :::
 
-::: {.column width="60%"}
-contents...
+::: {.column width="33%"}
+```{r}
+dracula_card(
+  outline = TRUE,
+  borderColor = "orange",
+  dracula_p(
+    dracula_text(
+      "Stable", 
+      color = "orange",
+      weight = "bold"
+    ), 
+    ": how often does it crash?"
+  )
+)
+```
+:::
+
+::: {.column width="33%"}
+```{r}
+dracula_card(
+  outline = TRUE,
+  borderColor = "green",
+  dracula_p(
+    dracula_text(
+      "Available", 
+      color = "green",
+      weight = "bold"
+    ), 
+    ": is the app fast enough to handle multiple concurrent users?"
+  )
+)
+```
 :::
 
 ::::
 
-## Bullets
+In practice, a few apps meet all these requirements 😈. 
+
+## Available tools
 
 ::: {.panel-tabset}
 
-### Tab A
+### Structure your app
 
-[Preview](https://example.com){preview-link="true"}
+<img src="assets/images/svg/golem.svg" width="10%" style="display: block; margin: auto;" class="svg-img"/>
 
-### Tab B
+- Easier checking, linting, documentation and testing.
+- Just ... __easier__. 😀
 
-Content for `Tab B`
+### __dependencies__
+
+<img src="assets/images/svg/renv.svg" width="10%" style="display: block; margin: auto;" class="svg-img"/>
+
+- Fix package versions.
+- Increased __reproducibility__.
+
+### __Test__ code
+
+<img src="assets/images/svg/testthat.svg" width="10%" style="display: block; margin: auto;" class="svg-img"/>
+
+- Unit tests: test business logic. 
+- Server testing: test how Shiny modules or pieces work together (with reactivity).
+- UI testing: test UI components, snapshots, headless-testing (`{shinytest2}`).
+
+### Optimize
+Are there bottlenecks?
+
+- __Load__ testing: How does the app behave with 10 simultaneous user? `{shinyloadtest}`.
+- __Profiling__: What part of my app is slow?`{profvis}`.
+- Reactivity: Are there any reactivity issues? <img src="assets/images/svg/reactlog.svg" width="10%" style="display: inline; margin: auto;" class="svg-img"/>.
 
 :::
 
-## Code
+## Automate: CI/CD
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+::: {.panel-tabset}
+### What
 
-```{r}
-#| output-location: column-fragment
-#| code-line-numbers: "|2"
+- Continuous integration: automatically __check__ new features. 🏥
+- Continuous deployment: automatically __deploy__ content. ✉️
+- Running on a __remote__ environment ☁️:
+  - [Github Actions](https://github.com/features/actions).
+  - [Jenkins](https://www.jenkins.io/).
+  - [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/).
 
-library(ggplot2)
+### Benefits
 
-1+1
+- __Automated__.
+- More __reproducible__ (more os/R flavors available).
+- __Time saver__.
+- Less duplication.
+
+### How? 
+Not easy 😢
+
+- Select __DevOps__ platform (GitLab, GitHub, ...).
+- Add __version control__ (git knowledge).
+- Build custom GitLab runner (optional).
+- Write __CI/CD instructions__ (better support for GitHub).
+- Enjoy ...
+
+Can't we make things easier❓
+
+:::
+
+## Stop ... I am lost ...
+
+<img src="assets/images/svg/sad.svg" width="40%" style="display: block; margin: auto;" class="svg-img"/>
+
+- There are just so many tools! How to use them properly?
+- Is there a way to __automate__ all of this? I just don't have time ... 😞
+
+# Code
+
+```{mermaid}
+%%{init: {'theme':'dark'}}%%
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
 ```
