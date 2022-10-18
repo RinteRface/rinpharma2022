@@ -14,6 +14,7 @@ format:
     controls-tutorial: true
     template-partials: 
       - title-slide.html
+    chalkboard: true
 highlight-style: dracula
 ---
 

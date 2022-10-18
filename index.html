@@ -98,6 +98,8 @@
 <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="index_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+<link href="index_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
 <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
 <style type="text/css">
 
@@ -670,14 +672,196 @@ graph TD
 </iframe>
 </section><section id="gitlabgithub" class="slide level2"><h2>GitLab/GitHub</h2>
 
-<img data-src="assets/images/png/gitlab-pipeline.png" class="r-stretch quarto-figure-center"><p class="caption">shinyValidator on GitLab CI</p><div class="footer footer-default">
+<img data-src="assets/images/png/gitlab-pipeline.png" class="r-stretch quarto-figure-center"><p class="caption">shinyValidator on GitLab CI</p></section><section id="cicd-file-branches" class="slide level2"><h2>CI/CD file: branches</h2>
+<p>In case you need to control branches triggering <code>{shinyValidator}</code>:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">,</span><span class="at"> master</span><span class="kw">,</span><span class="at"> &lt;CUSTOM_BRANCH&gt;</span><span class="kw">]</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">,</span><span class="at"> master</span><span class="kw">,</span><span class="at"> &lt;CUSTOM_BRANCH&gt;</span><span class="kw">]</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> shinyValidator</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p>
+<pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">%%{init: {'theme':'dark'}}%%
+gitGraph
+  commit
+  commit
+  branch develop
+  checkout develop
+  commit
+  commit
+  checkout main
+  merge develop
+  commit
+  commit id: "Normal" tag: "v1.0.0"
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="cicd-file-strategy" class="slide level2"><h2>CI/CD file: strategy</h2>
+<p>If you have to change the R version, os, …:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="at">  </span><span class="fu">fail-fast</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="at">  </span><span class="fu">matrix</span><span class="kw">:</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="at">    </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="kw">,</span><span class="at">   </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'devel'</span><span class="kw">,</span><span class="at"> </span><span class="fu">http-user-agent</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span><span class="kw">}</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="kw">,</span><span class="at">   </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span><span class="kw">}</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="kw">,</span><span class="at">   </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'oldrel-1'</span><span class="kw">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="cicd-file-steps" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">CI/CD file: steps</h2>
+<p>Code is first linted:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode yaml hljs"><span id="cb9-1" class="hljs-ln-code"><a href="#cb9-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint code</span></span>
+<span id="cb9-2" class="hljs-ln-code"><a href="#cb9-2"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb9-3" class="hljs-ln-code"><a href="#cb9-3"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::lint_code()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="cicd-file-steps-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">CI/CD file: steps</h2>
+<p>The app undergo a series of validations:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode yaml hljs"><span id="cb10-1" class="hljs-ln-code"><a href="#cb10-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint code</span></span>
+<span id="cb10-2" class="hljs-ln-code"><a href="#cb10-2"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb10-3" class="hljs-ln-code"><a href="#cb10-3"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::lint_code()</span></span>
+<span id="cb10-4" class="hljs-ln-code"><a href="#cb10-4"></a></span>
+<span id="cb10-5" class="hljs-ln-code"><a href="#cb10-5"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Audit app 🏥</span></span>
+<span id="cb10-6" class="hljs-ln-code"><a href="#cb10-6"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb10-7" class="hljs-ln-code"><a href="#cb10-7"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::audit_app()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="cicd-file-steps-2" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">CI/CD file: steps</h2>
+<p>The report is deployed to GitHub pages:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode yaml hljs"><span id="cb11-1" class="hljs-ln-code"><a href="#cb11-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint code</span></span>
+<span id="cb11-2" class="hljs-ln-code"><a href="#cb11-2"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb11-3" class="hljs-ln-code"><a href="#cb11-3"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::lint_code()</span></span>
+<span id="cb11-4" class="hljs-ln-code"><a href="#cb11-4"></a></span>
+<span id="cb11-5" class="hljs-ln-code"><a href="#cb11-5"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Audit app 🏥</span></span>
+<span id="cb11-6" class="hljs-ln-code"><a href="#cb11-6"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb11-7" class="hljs-ln-code"><a href="#cb11-7"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::audit_app()</span></span>
+<span id="cb11-8" class="hljs-ln-code"><a href="#cb11-8"></a></span>
+<span id="cb11-9" class="hljs-ln-code"><a href="#cb11-9"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy to GitHub pages 🚀</span></span>
+<span id="cb11-10" class="hljs-ln-code"><a href="#cb11-10"></a><span class="at">  </span><span class="fu">if</span><span class="kw">:</span><span class="at"> github.event_name != 'pull_request'</span></span>
+<span id="cb11-11" class="hljs-ln-code"><a href="#cb11-11"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> JamesIves/github-pages-deploy-action@4.1.4</span></span>
+<span id="cb11-12" class="hljs-ln-code"><a href="#cb11-12"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb11-13" class="hljs-ln-code"><a href="#cb11-13"></a><span class="at">    </span><span class="fu">clean</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb11-14" class="hljs-ln-code"><a href="#cb11-14"></a><span class="at">    </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
+<span id="cb11-15" class="hljs-ln-code"><a href="#cb11-15"></a><span class="at">    </span><span class="fu">folder</span><span class="kw">:</span><span class="at"> public</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="audit-app" class="slide level2"><h2>Audit app</h2>
+<p><code>audit_app()</code> is the main function:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>audit_app <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="at">headless_actions =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">timeout =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">workers =</span> <span class="dv">5</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="at">scope =</span> <span class="fu">c</span>(<span class="st">"manual"</span>, <span class="st">"DMC"</span>, <span class="st">"POC"</span>),</span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="at">output_validation =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="at">coverage =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="at">load_testing =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="at">profile_code =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="at">check_reactivity =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="at">flow =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="at">debug =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-13"><a href="#cb12-13"></a>  ...</span>
+<span id="cb12-14"><a href="#cb12-14"></a>) {</span>
+<span id="cb12-15"><a href="#cb12-15"></a>  <span class="do">###</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>
+<strong>headless actions</strong>: pass <a href="https://github.com/rstudio/shinytest2">shinytest2</a> instructions.</li>
+<li>
+<strong>timeout</strong>: wait app to start.</li>
+<li>
+<strong>…</strong>: parameters to pass to <code>run_app()</code> such as database logins, …</li>
+<li>
+<strong>scope</strong>: predefined set of parameters (see examples).</li>
+</ul>
+</div>
+</div>
+</section><section id="audit-app-example" class="slide level2"><h2>Audit app: example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>audit_app <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="at">profile_code =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  ...</span>
+<span id="cb13-4"><a href="#cb13-4"></a>) {</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="do">###</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p>
+<pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">%%{init: {'theme':'dark'}}%%
+graph TD
+  A(Check) --&gt; B(Crashtest)
+  B --&gt; C(Loadtest)
+  C --&gt; D(Coverage)
+  D --&gt; E(Reactivity)
+  click A callback "devtools::check"
+  click B callback "{shinytest2}"
+  click C callback "{shinyloadtest}"
+  click D callback "{covr}"
+  click E callback "{reactlog}"
+</pre>
+<div id="mermaid-tooltip-3" class="mermaidTooltip">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="audit-app-using-scope-parameter" class="slide level2"><h2>Audit app: using scope parameter</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>audit_app <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">scope =</span> <span class="st">"POC"</span>,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  ...</span>
+<span id="cb14-4"><a href="#cb14-4"></a>) {</span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="do">###</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p>
+<pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">%%{init: {'theme':'dark'}}%%
+graph LR
+  A(Check) --&gt; B(Crashtest)
+</pre>
+<div id="mermaid-tooltip-4" class="mermaidTooltip">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer footer-default">
 <p>Novartis, 2022</p>
 </div>
 </section></section>
 </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="index_files/libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script><script src="index_files/libs/revealjs/plugin/notes/notes.js"></script><script src="index_files/libs/revealjs/plugin/search/search.js"></script><script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script><script src="index_files/libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="index_files/libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script><script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script><script src="index_files/libs/revealjs/plugin/notes/notes.js"></script><script src="index_files/libs/revealjs/plugin/search/search.js"></script><script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script><script src="index_files/libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -689,7 +873,8 @@ graph TD
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -860,7 +1045,7 @@ graph TD
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

@@ -108,3 +108,202 @@ title="shinyValidator html report" width="100%" height="100%">
 ## GitLab/GitHub
 
 ![shinyValidator on GitLab CI](assets/images/png/gitlab-pipeline.png)
+
+
+## CI/CD file: branches
+
+In case you need to control branches triggering `{shinyValidator}`:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```yaml
+on:
+  push:
+    branches: [main, master, <CUSTOM_BRANCH>]
+  pull_request:
+    branches: [main, master, <CUSTOM_BRANCH>]
+
+name: shinyValidator
+```
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+%%{init: {'theme':'dark'}}%%
+gitGraph
+  commit
+  commit
+  branch develop
+  checkout develop
+  commit
+  commit
+  checkout main
+  merge develop
+  commit
+  commit id: "Normal" tag: "v1.0.0"
+```
+:::
+
+::::
+
+## CI/CD file: strategy 
+
+If you have to change the R version, os, ...:
+
+```yaml
+strategy:
+  fail-fast: false
+  matrix:
+    config:
+      - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+      - {os: ubuntu-latest,   r: 'release'}
+      - {os: ubuntu-latest,   r: 'oldrel-1'}
+```
+
+## CI/CD file: steps {auto-animate=true}
+
+Code is first linted:
+
+```yaml
+- name: Lint code
+  shell: Rscript {0}
+  run: shinyValidator::lint_code()
+```
+
+## CI/CD file: steps {auto-animate=true}
+
+The app undergo a series of validations:
+
+```yaml
+- name: Lint code
+  shell: Rscript {0}
+  run: shinyValidator::lint_code()
+
+- name: Audit app 🏥
+  shell: Rscript {0}
+  run: shinyValidator::audit_app()
+```
+
+## CI/CD file: steps {auto-animate=true}
+
+The report is deployed to GitHub pages:
+
+```yaml
+- name: Lint code
+  shell: Rscript {0}
+  run: shinyValidator::lint_code()
+
+- name: Audit app 🏥
+  shell: Rscript {0}
+  run: shinyValidator::audit_app()
+
+- name: Deploy to GitHub pages 🚀
+  if: github.event_name != 'pull_request'
+  uses: JamesIves/github-pages-deploy-action@4.1.4
+  with:
+    clean: false
+    branch: gh-pages
+    folder: public
+```
+
+## Audit app
+
+`audit_app()` is the main function:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| echo: true
+audit_app <- function(
+  headless_actions = NULL,
+  timeout = NULL,
+  workers = 5,
+  scope = c("manual", "DMC", "POC"),
+  output_validation = FALSE,
+  coverage = TRUE,
+  load_testing = TRUE,
+  profile_code = TRUE,
+  check_reactivity = TRUE,
+  flow = FALSE,
+  debug = FALSE,
+  ...
+) {
+  ###
+}
+```
+:::
+
+::: {.column width="50%"}
+- __headless actions__: pass `{shinytest2}` instructions.
+- __timeout__: wait app to start.
+- __...__: parameters to pass to `run_app()` such as database logins, ...
+- __scope__: predefined set of parameters (see examples).
+:::
+
+::::
+
+## Audit app: example
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| echo: true
+audit_app <- function(
+  profile_code = FALSE,
+  ...
+) {
+  ###
+}
+```
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+%%{init: {'theme':'dark'}}%%
+graph TD
+  A(Check) --> B(Crashtest)
+  B --> C(Loadtest)
+  C --> D(Coverage)
+  D --> E(Reactivity)
+  click A callback "devtools::check"
+  click B callback "{shinytest2}"
+  click C callback "{shinyloadtest}"
+  click D callback "{covr}"
+  click E callback "{reactlog}"
+```
+:::
+
+::::
+
+
+## Audit app: using scope parameter
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| echo: true
+audit_app <- function(
+  scope = "POC",
+  ...
+) {
+  ###
+}
+```
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+%%{init: {'theme':'dark'}}%%
+graph LR
+  A(Check) --> B(Crashtest)
+```
+:::
+
+::::
