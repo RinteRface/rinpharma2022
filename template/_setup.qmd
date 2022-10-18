@@ -68,27 +68,26 @@ renv::snapshot()
 
 ```{mermaid}
 %%{init: {'theme':'dark'}}%%
-graph TD
+flowchart TD
+  subgraph CICD
+    direction TB
+    subgraph DMC 
+      direction LR
+      E[Lint] --> F[Quality]
+      F --> G[Performance]
+    end
+    subgraph POC 
+      direction LR
+      H[Lint] --> I[Quality]
+    end
+  end
   A(Shiny Project) --> B(DMC App)
   A --> C(Poof of concept App POC)
   B --> |strict| D[Expectations]
   C --> |low| D
-  D --> |DMC| F
-  D --> |POC| H
-  F --> |create| J(Global HTML report)
-  H --> J
+  D --> CICD 
+  CICD --> |create| J(Global HTML report)
   J --> |deploy| K(Deployment server)
-  subgraph DMC CI/CD pipeline
-    direction LR
-    E[Lint]
-    F[Quality/crash tests]
-    G[Performance tests]
-  end
-  subgraph POC CI/CD pipeline
-    direction LR
-    H[Lint]
-    I[Quality/crash tests]
-  end
   click A callback "Tooltip for a callback"
   click B callback "DMC: data monitoring committee"
   click D callback "Apps have different expectations"

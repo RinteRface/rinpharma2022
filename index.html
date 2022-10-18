@@ -630,27 +630,26 @@
 <p>
 </p>
 <pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme':'dark'}}%%
-graph TD
+flowchart TD
+  subgraph CICD
+    direction TB
+    subgraph DMC 
+      direction LR
+      E[Lint] --&gt; F[Quality]
+      F --&gt; G[Performance]
+    end
+    subgraph POC 
+      direction LR
+      H[Lint] --&gt; I[Quality]
+    end
+  end
   A(Shiny Project) --&gt; B(DMC App)
   A --&gt; C(Poof of concept App POC)
   B --&gt; |strict| D[Expectations]
   C --&gt; |low| D
-  D --&gt; |DMC| F
-  D --&gt; |POC| H
-  F --&gt; |create| J(Global HTML report)
-  H --&gt; J
+  D --&gt; CICD 
+  CICD --&gt; |create| J(Global HTML report)
   J --&gt; |deploy| K(Deployment server)
-  subgraph DMC CI/CD pipeline
-    direction LR
-    E[Lint]
-    F[Quality/crash tests]
-    G[Performance tests]
-  end
-  subgraph POC CI/CD pipeline
-    direction LR
-    H[Lint]
-    I[Quality/crash tests]
-  end
   click A callback "Tooltip for a callback"
   click B callback "DMC: data monitoring committee"
   click D callback "Apps have different expectations"
