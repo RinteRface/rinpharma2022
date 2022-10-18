@@ -260,9 +260,10 @@ renv::snapshot()
 ```{r}
 #| eval: false
 #| echo: true
+#| code-line-numbers: "4"
 devtools::install_github("Novartis/shinyValidator")
 library(shinyValidator)
-## At the root of your R package
+# At the root of your R package
 use_validator("github")
 devtools::document() # update help
 renv::snapshot()
@@ -279,4 +280,5 @@ flowchart LR
   B --> C{Decision}
   C --> D[Result one]
   C --> E[Result two]
+  click A callback "Tooltip for a callback"
 ```

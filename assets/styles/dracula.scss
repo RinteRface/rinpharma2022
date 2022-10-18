@@ -21,3 +21,10 @@ $tabset-border-color: $body-bg;
 // headings
 
 /*-- scss:rules --*/
+
+.mermaidTooltip {
+  background-color: $body-color !important; 
+  color: $body-bg !important;
+  border-color: $code-bg !important;
+  padding: 5px !important;
+}

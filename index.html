@@ -612,9 +612,9 @@
 </div>
 </section><section id="install-shinyvalidator" class="slide level2"><h2>Install {shinyValidator}</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Novartis/shinyValidator"</span>)</span>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Novartis/shinyValidator"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(shinyValidator)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="do">## At the root of your R package</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># At the root of your R package</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="fu">use_validator</span>(<span class="st">"github"</span>)</span>
 <span id="cb6-5"><a href="#cb6-5"></a>devtools<span class="sc">::</span><span class="fu">document</span>() <span class="co"># update help</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -633,6 +633,7 @@ flowchart LR
   B --&gt; C{Decision}
   C --&gt; D[Result one]
   C --&gt; E[Result two]
+  click A callback "Tooltip for a callback"
 </pre>
 <div id="mermaid-tooltip-1" class="mermaidTooltip">
 
