@@ -621,19 +621,42 @@
 </div>
 </section></section><section><section id="shinyvalidator-step-by-step" class="title-slide slide level1 center"><h1>{shinyValidator}: step by step</h1>
 
-</section><section id="some-graphs-with-mermaid" class="slide level2"><h2>Some graphs with mermaid</h2>
+</section><section id="overall-concept" class="slide level2"><h2>Overall concept</h2>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
 </p>
 <pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme':'dark'}}%%
-flowchart LR
-  A[Hard edge] --&gt; B(Round edge)
-  B --&gt; C{Decision}
-  C --&gt; D[Result one]
-  C --&gt; E[Result two]
+graph TD
+  A(Shiny Project) --&gt; B(DMC App)
+  A --&gt; C(Poof of concept App POC)
+  B --&gt; |strict| D[Expectations]
+  C --&gt; |low| D
+  D --&gt; |DMC| F
+  D --&gt; |POC| H
+  F --&gt; |create| J(Global HTML report)
+  H --&gt; J
+  J --&gt; |deploy| K(Deployment server)
+  subgraph DMC CI/CD pipeline
+    direction LR
+    E[Lint]
+    F[Quality/crash tests]
+    G[Performance tests]
+  end
+  subgraph POC CI/CD pipeline
+    direction LR
+    H[Lint]
+    I[Quality/crash tests]
+  end
   click A callback "Tooltip for a callback"
+  click B callback "DMC: data monitoring committee"
+  click D callback "Apps have different expectations"
+  click E callback "Lint code: check code formatting, style, ..."
+  click F callback "Run R CMD check + headless crash test (shinytest2)"
+  click G callback "Optional tests: profiling, load test, ..."
+  click J callback "HTML reports with multiple tabs"
+  click K callback "RStudio Connect, GitLab/GitHub pages, ..."
 </pre>
 <div id="mermaid-tooltip-1" class="mermaidTooltip">
 
@@ -642,7 +665,12 @@ flowchart LR
 </div>
 </div>
 </div>
-<div class="footer footer-default">
+</section><section id="report-example" class="slide level2"><h2>Report example</h2>
+<iframe src="./assets/shinyvalidator-report/index.html" title="shinyValidator html report" width="100%" height="100%">
+</iframe>
+</section><section id="gitlabgithub" class="slide level2"><h2>GitLab/GitHub</h2>
+
+<img data-src="assets/images/png/gitlab-pipeline.png" class="r-stretch quarto-figure-center"><p class="caption">shinyValidator on GitLab CI</p><div class="footer footer-default">
 <p>Novartis, 2022</p>
 </div>
 </section></section>

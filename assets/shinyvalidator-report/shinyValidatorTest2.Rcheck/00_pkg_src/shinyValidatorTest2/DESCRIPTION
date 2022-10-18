@@ -1,0 +1,22 @@
+Package: shinyValidatorTest2
+Title: An Amazing Shiny App
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "firstname",
+           family = "lastname",
+           role = c("aut", "cre"),
+           email = "your@email.com")
+Description: What the package does (one paragraph).
+    This package is just amazing.
+License: Apache License (>= 2)
+Imports: config (>= 0.3.1), golem (>= 0.3.1), shiny (>= 1.6.0),
+        echarts4r, ggplot2, datasets, tibble, magrittr
+Encoding: UTF-8
+RoxygenNote: 7.1.2
+Suggests: DT, testthat (>= 3.0.0), devtools, pkgload, lubridate,
+        rmarkdown, vdiffr, htmlwidgets, shinyValidator
+Config/testthat/edition: 3
+NeedsCompilation: no
+Packaged: 2022-04-21 15:21:48 UTC; root
+Author: firstname lastname [aut, cre]
+Maintainer: firstname lastname <your@email.com>

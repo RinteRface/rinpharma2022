@@ -1,0 +1,27 @@
+# Welcome
+
+We're in for 2 hours of **fun**!
+
+- Grab a `r ji("coffee")`
+- Make yourself comfortable `r ji("couch")` or 🧘
+- Ask questions `r ji("question")`  
+
+## Program
+
+1. Introduction 				__5  min__
+2. Setup {shinyValidator} __45 min__
+3. Analyse {shinyValidator} report __45 min__
+4. Questions
+
+## Workshop Material
+
+- Slides: [https://rinpharma2022.rinterface.com/](https://rinpharma2022.rinterface.com)
+
+Clone this repository with the RStudio IDE or via the command line.
+
+```bash
+git clone https://github.com/RinteRface/rinpharma2022.git
+cd rinpharma2022
+```
+
+Then run `renv::restore()` to install the dependencies.

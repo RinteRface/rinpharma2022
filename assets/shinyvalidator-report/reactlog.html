@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>reactlog</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro&amp;subset=latin-ext" rel="stylesheet"> -->
+  <link rel="stylesheet" type="text/css" href="reactlogAsset/fira-mono_source-sans-pro_latin-ext.css">
+  <link rel="stylesheet" type="text/css" href="reactlogAsset/reactlog.css">
+
+  <script>
+    try {
+      window.__APP_DATA__ = [
+  {
+    "action": "define",
+    "reactId": "r3",
+    "label": "Theme Counter",
+    "type": "reactiveVal",
+    "value": " num 0",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.71431
+  },
+  {
+    "action": "define",
+    "reactId": "r4",
+    "label": "output$echarts_plot",
+    "type": "observer",
+    "value": " NULL",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.82336
+  },
+  {
+    "action": "createContext",
+    "ctxId": "ctx1",
+    "label": "output$echarts_plot",
+    "type": "observer",
+    "prevCtxId": null,
+    "srcref": [9, 42, 11, 26, 42, 26],
+    "srcfile": "app_server.R",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.82965
+  },
+  {
+    "action": "invalidateStart",
+    "reactId": "r4",
+    "ctxId": "ctx1",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.82983
+  },
+  {
+    "action": "asyncStart",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.83021
+  },
+  {
+    "action": "invalidateEnd",
+    "reactId": "r4",
+    "ctxId": "ctx1",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.83501
+  },
+  {
+    "action": "define",
+    "reactId": "r5",
+    "label": "plotObj",
+    "type": "observable",
+    "value": " NULL",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.84837
+  },
+  {
+    "action": "define",
+    "reactId": "r6",
+    "label": "output$ggplot_plot",
+    "type": "observer",
+    "value": " NULL",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.98137
+  },
+  {
+    "action": "createContext",
+    "ctxId": "ctx2",
+    "label": "output$ggplot_plot",
+    "type": "observer",
+    "prevCtxId": null,
+    "srcref": [14, 36, 15, 26, 36, 26],
+    "srcfile": "app_server.R",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.98167
+  },
+  {
+    "action": "invalidateStart",
+    "reactId": "r6",
+    "ctxId": "ctx2",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.9818
+  },
+  {
+    "action": "invalidateEnd",
+    "reactId": "r6",
+    "ctxId": "ctx2",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554800.982
+  },
+  {
+    "action": "createContext",
+    "ctxId": "ctx3",
+    "label": "output$echarts_plot",
+    "type": "observer",
+    "prevCtxId": "ctx1",
+    "srcref": [9, 42, 11, 26, 42, 26],
+    "srcfile": "app_server.R",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554801.03617
+  },
+  {
+    "action": "enter",
+    "reactId": "r4",
+    "ctxId": "ctx3",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554801.03652
+  },
+  {
+    "action": "define",
+    "reactId": "r1$var",
+    "label": "input$var",
+    "type": "reactiveValuesKey",
+    "value": " chr \"Population\"",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.07668
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r4",
+    "depOnReactId": "r1$var",
+    "ctxId": "ctx3",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.07717
+  },
+  {
+    "action": "exit",
+    "reactId": "r4",
+    "ctxId": "ctx3",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.18636
+  },
+  {
+    "action": "createContext",
+    "ctxId": "ctx4",
+    "label": "output$ggplot_plot",
+    "type": "observer",
+    "prevCtxId": "ctx2",
+    "srcref": [14, 36, 15, 26, 36, 26],
+    "srcfile": "app_server.R",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.18721
+  },
+  {
+    "action": "enter",
+    "reactId": "r6",
+    "ctxId": "ctx4",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.18743
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r6",
+    "depOnReactId": "r5",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.2014
+  },
+  {
+    "action": "createContext",
+    "ctxId": "ctx5",
+    "label": "plotObj",
+    "type": "observable",
+    "prevCtxId": null,
+    "srcref": null,
+    "srcfile": "",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.20183
+  },
+  {
+    "action": "enter",
+    "reactId": "r5",
+    "ctxId": "ctx5",
+    "type": "observable",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.20202
+  },
+  {
+    "action": "createContext",
+    "ctxId": "ctx6",
+    "label": "[isolate]",
+    "type": "isolate",
+    "prevCtxId": null,
+    "srcref": null,
+    "srcfile": null,
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.20235
+  },
+  {
+    "action": "isolateEnter",
+    "reactId": "r5",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.20249
+  },
+  {
+    "action": "define",
+    "reactId": "r2$output_ggplot_plot_width",
+    "label": "clientData$output_ggplot_plot_width",
+    "type": "reactiveValuesKey",
+    "value": " int 962",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r5",
+    "depOnReactId": "r2$output_ggplot_plot_width",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21051
+  },
+  {
+    "action": "define",
+    "reactId": "r2$output_ggplot_plot_height",
+    "label": "clientData$output_ggplot_plot_height",
+    "type": "reactiveValuesKey",
+    "value": " int 400",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21163
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r5",
+    "depOnReactId": "r2$output_ggplot_plot_height",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21204
+  },
+  {
+    "action": "isolateExit",
+    "reactId": "r5",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21222
+  },
+  {
+    "action": "isolateInvalidateStart",
+    "reactId": "r5",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21231
+  },
+  {
+    "action": "dependsOnRemove",
+    "reactId": "r5",
+    "depOnReactId": "r2$output_ggplot_plot_width",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21239
+  },
+  {
+    "action": "dependsOnRemove",
+    "reactId": "r5",
+    "depOnReactId": "r2$output_ggplot_plot_height",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21248
+  },
+  {
+    "action": "isolateInvalidateEnd",
+    "reactId": "r5",
+    "ctxId": "ctx6",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21256
+  },
+  {
+    "action": "define",
+    "reactId": "r2$pixelratio",
+    "label": "clientData$pixelratio",
+    "type": "reactiveValuesKey",
+    "value": " int 1",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.21981
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r5",
+    "depOnReactId": "r2$pixelratio",
+    "ctxId": "ctx5",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.2203
+  },
+  {
+    "action": "define",
+    "reactId": "r1$col",
+    "label": "input$col",
+    "type": "reactiveValuesKey",
+    "value": " chr \"mpg\"",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.27438
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r5",
+    "depOnReactId": "r1$col",
+    "ctxId": "ctx5",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.28105
+  },
+  {
+    "action": "exit",
+    "reactId": "r5",
+    "ctxId": "ctx5",
+    "type": "observable",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.83027
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r6",
+    "depOnReactId": "r2$output_ggplot_plot_width",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.83054
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r6",
+    "depOnReactId": "r2$output_ggplot_plot_height",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.83074
+  },
+  {
+    "action": "dependsOn",
+    "reactId": "r6",
+    "depOnReactId": "r2$pixelratio",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.83092
+  },
+  {
+    "action": "exit",
+    "reactId": "r6",
+    "ctxId": "ctx4",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.83606
+  },
+  {
+    "action": "asyncStop",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554804.83619
+  },
+  {
+    "action": "idle",
+    "session": null,
+    "time": 1650554804.83972
+  },
+  {
+    "action": "invalidateStart",
+    "reactId": "r4",
+    "ctxId": "ctx3",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14294
+  },
+  {
+    "action": "dependsOnRemove",
+    "reactId": "r4",
+    "depOnReactId": "r1$var",
+    "ctxId": "ctx3",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14308
+  },
+  {
+    "action": "invalidateEnd",
+    "reactId": "r4",
+    "ctxId": "ctx3",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14319
+  },
+  {
+    "action": "invalidateStart",
+    "reactId": "r6",
+    "ctxId": "ctx4",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.1434
+  },
+  {
+    "action": "dependsOnRemove",
+    "reactId": "r6",
+    "depOnReactId": "r5",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14348
+  },
+  {
+    "action": "dependsOnRemove",
+    "reactId": "r6",
+    "depOnReactId": "r2$output_ggplot_plot_width",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14355
+  },
+  {
+    "action": "dependsOnRemove",
+    "reactId": "r6",
+    "depOnReactId": "r2$output_ggplot_plot_height",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14367
+  },
+  {
+    "action": "dependsOnRemove",
+    "reactId": "r6",
+    "depOnReactId": "r2$pixelratio",
+    "ctxId": "ctx4",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14376
+  },
+  {
+    "action": "invalidateEnd",
+    "reactId": "r6",
+    "ctxId": "ctx4",
+    "type": "observer",
+    "session": "7b99596b00f5a3ca88fbd6b68ce372ef",
+    "time": 1650554805.14388
+  }
+];
+      window.__APP_TIME__ = String("TRUE").toLowerCase() === "true";
+    } catch (e) {}
+  </script>
+
+  
+  <script src="reactlogAsset/reactlog.js"></script>
+</head>
+
+<body>
+  <div id="bodyContent">
+    <div id="statusHeader">
+      <div id="movementButtons" style="z-index:1;">
+        <img id="prevUserMarkButton" class="navigationButton" src="./reactlogAsset/images/prev-mark.svg" alt="Previous User Mark" title="Previous User Mark (home)" height="24" width="30">
+        <img id="prevIdleButton" class="navigationButton" src="./reactlogAsset/images/prev-idle.svg" alt="Previous idle" title="Previous idle (&#8997; &#8679; &#8592;)" height="24" width="30">
+        <img id="prevOutputCalcButton" class="navigationButton" src="./reactlogAsset/images/prev-output-calc.svg" alt="Previous output calculation" title="Previous output calculation (&#8997; &#8592;)" height="24" width="30">
+        <img id="prevStepButton"  class="navigationButton" src="./reactlogAsset/images/prev-step.svg"  alt="Previous step"  title="Previous step (&#8592;)"  height="24" width="30">
+        <img id="nextStepButton"  class="navigationButton" src="./reactlogAsset/images/next-step.svg"  alt="Next step"      title="Next step (&#8594;)"      height="24" width="30">
+        <img id="nextOutputCalcButton" class="navigationButton" src="./reactlogAsset/images/next-output-calc.svg" alt="Next output calculation"     title="Next output calculation (&#8997; &#8594;)"     height="24" width="30">
+        <img id="nextIdleButton" class="navigationButton" src="./reactlogAsset/images/next-idle.svg" alt="Next idle"     title="Next idle (&#8997; &#8679; &#8594;)"     height="24" width="30">
+        <img id="nextUserMarkButton" class="navigationButton" src="./reactlogAsset/images/next-mark.svg" alt="Next User Mark"     title="Next User Mark (end)"     height="24" width="30">
+      </div>
+      <div id="eventStep">Step: <span id="eventStepNum" class="monospaced-pre"></span></div>
+      <div id="eventStatus"></div>
+      <div id="eventWrapper">
+        <div id="eventTimeBlock">
+          <div id="eventTime">Time: </div>
+          <div id="eventTimeNum" class="monospaced-pre"></div>
+        </div>
+        <div id="eventSessionBlock">
+          <div id="eventSession">Session: </div>
+          <div id="eventSessionNum" class="monospaced-pre"></div>
+        </div>
+      </div>
+      <div id="filter">
+        <input id="search" type="text" size="12" placeholder="Search Labels..."/>
+      </div>
+    </div> <!-- end statusHeader -->
+
+    <div id="timeline" style="z-index:1;">
+      <div id="timeline-bg">
+        <div id="timeline-fill"></div>
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="cytoWrapper">
+        <div id="cyto"></div>
+      </div>
+      <div id="legend">
+        <div class="legendRow legendRowTopMiddle"><div id="legendReady" class="legendColor"></div><div class="legendLabel">Ready</div></div>
+        <div class="legendRow legendRowTopMiddle"><div id="legendCalculating" class="legendColor"></div><div class="legendLabel">Calculating</div></div>
+        <div class="legendRow legendRowTopMiddle"><div id="legendInvalidating" class="legendColor"></div><div class="legendLabel">Invalidating</div></div>
+        <div class="legendRow" id="legendRowInvalidated"><div id="legendInvalidated" class="legendColor"></div><div class="legendLabel">Invalidated</div></div>
+        <div class="legendRow" id="legendRowFrozen" style="display:none"><div id="legendFrozen" class="legendColor"></div><div class="legendLabel">Frozen</div></div>
+      </div>
+      <div id="logEntry" style="display: none;"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shinyloadtest Report</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="load-test/css/shinyUI.css">
+    <link rel="stylesheet" href="load-test/css/shinyloadtest.css">
+    <link rel="stylesheet" type="text/css" href="load-test/css/datatables.min.css"/>
+
+  </head>
+  <body>
+    <!-- this are at the top so that any additional page specific scripts are loaded after -->
+    <script src="load-test/js/uikit.min.js"></script>
+    <script src="load-test/js/uikit-icons.min.js"></script>
+    <script>
+      // three vertical lines
+      UIkit.icon.add({"menu-rotated": '<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect y="2" x="4" height="16" width="1" /><rect y="2" x="9" height="16" width="1" /><rect y="2" x="14" height="16" width="1" /></svg>'})
+    </script>
+    <script type="text/javascript" src="load-test/js/datatables.min.js"></script>
+
+    <div class="sui-flex-5 sui-layout-flex-horz sui-full-height">
+      <div class="sui-flex-1 uk-background-muted slt-side-menu-container">
+        <ul class="uk-nav sui-nav-sidebar">
+          <li>
+            <h1>shinyloadtest</h1>
+          </li>
+          <li class="slt-side-menu-item">
+            <a href=#sessions><span uk-icon=server class="stl-side-menu-icon"></span>Sessions</a>
+          </li>
+          <li class="slt-side-menu-item">
+            <a href=#session-duration><span uk-icon=album class="stl-side-menu-icon"></span>Session Duration</a>
+          </li>
+          <li class="slt-side-menu-item">
+            <a href=#waterfall><span uk-icon=menu-rotated class="stl-side-menu-icon"></span>Event Waterfall</a>
+          </li>
+          <li class="slt-side-menu-item">
+            <a href=#latency><span uk-icon=clock class="stl-side-menu-icon"></span>Latency</a>
+          </li>
+          <li class="slt-side-menu-item">
+            <a href=#duration><span uk-icon=future class="stl-side-menu-icon"></span>Event Duration</a>
+          </li>
+          <li class="slt-side-menu-item">
+            <a href=#concurrency><span uk-icon=git-fork class="stl-side-menu-icon"></span>Event Concurrency</a>
+          </li>
+        </ul>
+      </div>
+      <div class="sui-flex-4 slt-main-content">
+        <section class="sui-layout-flex-vert" id="sessions">
+          <div class="sui-flex-0 slt-view-control">
+            <div class="uk-button-group sui-segmented-button" id=sessions-report-controller>
+              <button class="uk-button uk-button-primary sui-segmented-button-button sui-segmented-button-selected"
+data-view-option=run-run1-gantt>run1</button>
+            </div>
+          </div>
+          <div class="sui-flex-5 slt-section-group" id="sessions-chart-view">
+            <div id="run-run1-gantt" style="display:block;" >
+  <div class="uk-padding uk-padding-remove-bottom">
+    <p class="uk-text-meta">5 simulated users executing back to back sessions. Warmup or cooldown sessions (that are desaturated) start before or end after the vertical dotted line. Note that narrower event bars mean better performance.</p>
+  </div>
+  <img src="load-test/svg/gantt-run-run1.svg"/>
+</div>
+          </div>
+        </section>
+        <section class="sui-layout-flex-vert" id="session-duration" style="display: none;">
+          <div class="sui-flex-0 slt-view-control">
+            <div class="uk-button-group sui-segmented-button" id=session-duration-report-controller>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=run-run1-duration>run1</button>
+            </div>
+          </div>
+          <div class="sui-flex-5 slt-section-group" id="session-duration-chart-view">
+            <div id="run-run1-duration">
+  <div class="uk-padding uk-padding-remove-bottom">
+    <p class="uk-text-meta">36 maintenance sessions ordered from fastest to slowest completion time.  The red line marks how long the original recording session took to complete (~14s).  Sessions should end around the same time as each other for consistent behavior.</p>
+  </div>
+  <img src="load-test/svg/duration-run-run1.svg"/>
+</div>
+          </div>
+        </section>
+        <section class="sui-layout-flex-vert" id="waterfall" style="display: none;">
+          <div class="sui-flex-0 slt-view-control">
+            <div class="uk-button-group sui-segmented-button" id=waterfall-report-controller>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=run-run1-waterfall>run1</button>
+            </div>
+          </div>
+          <div class="sui-flex-5 slt-section-group" id="waterfall-chart-view">
+            <div id="run-run1-waterfall">
+  <div class="uk-padding uk-padding-remove-bottom">
+    <p class="uk-text-meta">Each session is represented with a line that cascades downward from each event.  As time progresses, the line will move to the right.  Consistent behavior will be represented with parallel lines, whereas inconsistent behavior will have lines jut arbitrarily to the right.  Warmup and cooldown sessions are included as grey lines.</p>
+  </div>
+  <img src="load-test/svg/waterfall-run-run1.svg"/>
+</div>
+          </div>
+        </section>
+        <section class="sui-layout-flex-vert" id="latency" style="display: none;">
+          <div class="sui-flex-0 slt-view-control">
+            <div class="uk-button-group sui-segmented-button" id=latency-report-controller>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=total-http>Total HTTP</button>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=max-websocket>Maximum WebSocket</button>
+            </div>
+          </div>
+          <div class="sui-flex-5 slt-section-group" id="latency-chart-view">
+            <div id="total-http">
+              <div class="uk-padding uk-padding-remove-bottom">
+                <p class="uk-text-meta">Total HTTP and supporting files (JS/CSS) latency (load time) is displayed for each session and run combination.  Each vertical bar represents the amount of time a session's Shiny application had to wait before it is able to ask the server for information. A resonable amount of time to wait as been set to 5s. Warmup and cooldown sessions are displayed outside the dotted maintenance period lines.</p>
+              </div>
+              <img src="load-test/svg/http_latency.svg"/>
+            </div>
+            <div id="max-websocket">
+              <div class="uk-padding uk-padding-remove-bottom">
+                <p class="uk-text-meta">Maximum WebSocket latency (calculation time) is displayed for each session and run combination.  The maximum time is shown to convey the longest amount of time a user would have to wait for a response from the Shiny server.  Warmup and cooldown sessions are displayed outside the dotted maintenance period lines.</p>
+              </div>
+              <img src="load-test/svg/websocket_latency.svg"/>
+            </div>
+          </div>
+        </section>
+        <section class="sui-layout-flex-vert" id="duration" style="display: none;">
+          <div class="sui-flex-0 slt-view-control">
+            <div class="uk-button-group sui-segmented-button" id=duration-report-controller>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=slowest-max>Slowest max time</button>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=slowest-min>Slowest min time</button>
+              
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=event-duration-data-table>Data table</button>
+            </div>
+          </div>
+          <div class="sui-flex-5 slt-section-group" id="duration-chart-view">
+            <div id="slowest-max">
+              <div class="uk-padding uk-padding-remove-bottom">
+  <p class="uk-text-meta">Event plots are arranged by the slowest <b>maximum</b> time within each plot.</p>
+</div>
+<div class="slt-box-picker-container">
+  <input id="slowest-max-picker" type="number" value="12" min="1" max="30" />
+  <h3>slowest maximum times</h3>
+  
+</div>
+              <div class="uk-flex uk-grid-match uk-grid-small uk-child-width-1-4@m slt-chart-grid" uk-grid id="slowest-max-grid">
+                <div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-4.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-25.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-22.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-30.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-28.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-32.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-16.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-26.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-7.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-20.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-19.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-5.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-9.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-11.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-17.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-10.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-21.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-33.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-15.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-18.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-8.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-6.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-12.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-13.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-14.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-31.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-24.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-27.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-29.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-23.svg" style="width:100%;" /></div>
+</div>
+              </div>
+            </div>
+            <div id="slowest-min">
+              <div class="uk-padding uk-padding-remove-bottom">
+  <p class="uk-text-meta">Event plots are arranged by the slowest <b>minimum</b> time within each plot.</p>
+</div>
+<div class="slt-box-picker-container">
+  <input id="slowest-min-picker" type="number" value="12" min="1" max="30" />
+  <h3>slowest minimum times</h3>
+  
+</div>
+              <div class="uk-flex uk-grid-match uk-grid-small uk-child-width-1-4@m slt-chart-grid" uk-grid id="slowest-min-grid">
+                <div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-25.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-30.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-32.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-16.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-4.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-26.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-7.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-22.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-5.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-11.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-10.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-15.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-20.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-28.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-6.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-9.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-17.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-19.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-21.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-13.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-12.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-18.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-8.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-14.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-23.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-24.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-27.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-29.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-31.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/boxplot-33.svg" style="width:100%;" /></div>
+</div>
+              </div>
+            </div>
+            
+            <div id="event-duration-data-table" style="padding: 0 2rem;">
+              <table class="uk-table uk-table-hover uk-table-striped slt-data-table">
+                <thead>
+                  <tr>
+                    <th>Label</th>
+                    <th>Max time</th>
+                    <th>Min time</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+  <td>Event 1) Get: Homepage</td>
+  <td>3.272</td>
+  <td>0.067</td>
+  
+</tr><tr>
+  <td>Event 22) Updated: ggplot_plot, echarts_plot</td>
+  <td>3.261</td>
+  <td>3.178</td>
+  
+</tr><tr>
+  <td>Event 19) Start Session</td>
+  <td>3.153</td>
+  <td>0.008</td>
+  
+</tr><tr>
+  <td>Event 27) Updated: </td>
+  <td>2.925</td>
+  <td>2.220</td>
+  
+</tr><tr>
+  <td>Event 25) Updated: </td>
+  <td>2.922</td>
+  <td>0.003</td>
+  
+</tr><tr>
+  <td>Event 29) Updated: </td>
+  <td>1.724</td>
+  <td>0.873</td>
+  
+</tr><tr>
+  <td>Event 13) Get: echarts-en.min.js</td>
+  <td>0.189</td>
+  <td>0.081</td>
+  
+</tr><tr>
+  <td>Event 23) Get: gremlins.min.js</td>
+  <td>0.081</td>
+  <td>0.020</td>
+  
+</tr><tr>
+  <td>Event 4) Get: shiny.min.js</td>
+  <td>0.034</td>
+  <td>0.013</td>
+  
+</tr><tr>
+  <td>Event 17) Get: bootstrap.min.js</td>
+  <td>0.032</td>
+  <td>0.003</td>
+  
+</tr><tr>
+  <td>Event 16) Get: echarts4r.js</td>
+  <td>0.026</td>
+  <td>0.002</td>
+  
+</tr><tr>
+  <td>Event 2) Get: jquery.min.js</td>
+  <td>0.023</td>
+  <td>0.008</td>
+  
+</tr><tr>
+  <td>Event 6) Get: selectize.bootstrap3.css</td>
+  <td>0.022</td>
+  <td>0.002</td>
+  
+</tr><tr>
+  <td>Event 8) Get: bootstrap.min.css</td>
+  <td>0.021</td>
+  <td>0.006</td>
+  
+</tr><tr>
+  <td>Event 14) Get: ecStat.min.js</td>
+  <td>0.019</td>
+  <td>0.002</td>
+  
+</tr><tr>
+  <td>Event 7) Get: selectize.min.js</td>
+  <td>0.017</td>
+  <td>0.004</td>
+  
+</tr><tr>
+  <td>Event 18) Get: bootstrap-accessibility.min.js</td>
+  <td>0.016</td>
+  <td>0.002</td>
+  
+</tr><tr>
+  <td>Event 30) Stop Session</td>
+  <td>0.015</td>
+  <td>0.000</td>
+  
+</tr><tr>
+  <td>Event 12) Get: htmlwidgets.js</td>
+  <td>0.013</td>
+  <td>0.003</td>
+  
+</tr><tr>
+  <td>Event 15) Get: dataTool.min.js</td>
+  <td>0.012</td>
+  <td>0.001</td>
+  
+</tr><tr>
+  <td>Event 5) Get: shiny-testmode.js</td>
+  <td>0.012</td>
+  <td>0.001</td>
+  
+</tr><tr>
+  <td>Event 3) Get: shiny.min.css</td>
+  <td>0.010</td>
+  <td>0.002</td>
+  
+</tr><tr>
+  <td>Event 9) Get: bootstrap-accessibility.min.css</td>
+  <td>0.009</td>
+  <td>0.001</td>
+  
+</tr><tr>
+  <td>Event 10) Get: Homepage</td>
+  <td>0.008</td>
+  <td>0.001</td>
+  
+</tr><tr>
+  <td>Event 11) Get: selectize-plugin-a11y.min.js</td>
+  <td>0.008</td>
+  <td>0.001</td>
+  
+</tr><tr>
+  <td>Event 28) Set: echarts_plot_global_out:echarts4rParse</td>
+  <td>0.002</td>
+  <td>0.000</td>
+  
+</tr><tr>
+  <td>Event 21) Initialize Session</td>
+  <td>0.001</td>
+  <td>0.000</td>
+  
+</tr><tr>
+  <td>Event 24) Set: echarts_plot_global_out:echarts4rParse</td>
+  <td>0.001</td>
+  <td>0.000</td>
+  
+</tr><tr>
+  <td>Event 26) Set: echarts_plot_global_out:echarts4rParse</td>
+  <td>0.001</td>
+  <td>0.000</td>
+  
+</tr><tr>
+  <td>Event 20) Set: var, col</td>
+  <td>0.001</td>
+  <td>0.000</td>
+  
+</tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section class="sui-layout-flex-vert" id="concurrency" style="display: none;">
+          <div class="sui-flex-0 slt-view-control">
+            <div class="uk-button-group sui-segmented-button" id=concurrency-report-controller>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=concurrency-slope>Largest slope</button>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=concurrency-intercept>Largest intercept</button>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=concurrency-error>Largest error</button>
+              <button class="uk-button uk-button-primary sui-segmented-button-button" data-view-option=event-concurrency-data-table>Data table</button>
+            </div>
+          </div>
+          <div class="sui-flex-5 slt-section-group" id="concurrency-chart-view">
+            <div id="concurrency-slope">
+              <div class="uk-padding uk-padding-remove-bottom">
+  <p class="uk-text-meta">Event plots are arranged by the largest <b>slope magnitude</b> found when fitting a line to each run.</p>
+</div>
+<div class="slt-box-picker-container">
+  <input id="concurrency-slope-picker" type="number" value="12" min="1" max="30" />
+  <h3>largest slope magnitudes</h3>
+  
+</div>
+              <div class="uk-flex uk-grid-match uk-grid-small uk-child-width-1-4@m slt-chart-grid" uk-grid id="concurrency-slope-grid">
+                <div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-28.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-4.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-22.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-32.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-25.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-16.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-26.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-17.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-20.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-7.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-30.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-33.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-18.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-6.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-19.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-5.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-11.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-8.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-14.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-13.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-21.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-9.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-10.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-31.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-15.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-23.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-12.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-29.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-24.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-27.svg" style="width:100%;" /></div>
+</div>
+              </div>
+            </div>
+            <div id="concurrency-intercept">
+              <div class="uk-padding uk-padding-remove-bottom">
+  <p class="uk-text-meta">Event plots are arranged by the largest <b>intercept magnitude</b> found when fitting a line to each run</p>
+</div>
+<div class="slt-box-picker-container">
+  <input id="concurrency-intercept-picker" type="number" value="12" min="1" max="30" />
+  <h3>largest intercept magnitudes</h3>
+  
+</div>
+              <div class="uk-flex uk-grid-match uk-grid-small uk-child-width-1-4@m slt-chart-grid" uk-grid id="concurrency-intercept-grid">
+                <div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-25.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-22.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-30.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-28.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-4.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-32.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-16.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-26.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-7.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-17.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-20.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-5.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-33.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-11.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-18.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-19.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-6.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-8.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-10.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-21.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-15.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-12.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-9.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-13.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-31.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-23.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-14.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-29.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-24.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-27.svg" style="width:100%;" /></div>
+</div>
+              </div>
+            </div>
+            <div id="concurrency-error">
+              <div class="uk-padding uk-padding-remove-bottom">
+  <p class="uk-text-meta">Event plots are arranged by the largest <b>error magnitude</b> found when fitting a line to each run.</p>
+</div>
+<div class="slt-box-picker-container">
+  <input id="concurrency-error-picker" type="number" value="12" min="1" max="30" />
+  <h3>largest error magnitudes</h3>
+  
+</div>
+              <div class="uk-flex uk-grid-match uk-grid-small uk-child-width-1-4@m slt-chart-grid" uk-grid id="concurrency-error-grid">
+                <div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-22.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-4.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-28.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-32.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-30.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-16.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-25.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-26.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-20.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-19.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-9.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-17.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-33.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-7.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-21.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-11.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-5.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-10.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-18.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-8.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-15.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-12.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-14.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-13.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-6.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-31.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-23.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-29.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-27.svg" style="width:100%;" /></div>
+</div><div class="">
+  <div class="uk-card uk-card-small slt-chart-grid-chart">
+    <img src="load-test/svg/concurrency-24.svg" style="width:100%;" /></div>
+</div>
+              </div>
+            </div>
+            <div id="event-concurrency-data-table" style="padding: 0 2rem;">
+              <table class="uk-table uk-table-hover uk-table-striped slt-data-table">
+                <thead>
+                  <tr>
+                    <th>Label</th>
+                    <th>Slope</th>
+                    <th>Intercept</th>
+                    <th>Error</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+  <td>Event 25) Updated: </td>
+  <td>0.875</td>
+  <td>-2.280</td>
+  <td>2.094</td>
+</tr><tr>
+  <td>Event 1) Get: Homepage</td>
+  <td>0.798</td>
+  <td>-2.196</td>
+  <td>2.276</td>
+</tr><tr>
+  <td>Event 19) Start Session</td>
+  <td>0.767</td>
+  <td>-3.046</td>
+  <td>2.364</td>
+</tr><tr>
+  <td>Event 29) Updated: </td>
+  <td>0.584</td>
+  <td>-1.445</td>
+  <td>0.572</td>
+</tr><tr>
+  <td>Event 22) Updated: ggplot_plot, echarts_plot</td>
+  <td>-0.060</td>
+  <td>3.494</td>
+  <td>0.035</td>
+</tr><tr>
+  <td>Event 13) Get: echarts-en.min.js</td>
+  <td>-0.044</td>
+  <td>0.276</td>
+  <td>0.066</td>
+</tr><tr>
+  <td>Event 23) Get: gremlins.min.js</td>
+  <td>-0.022</td>
+  <td>0.137</td>
+  <td>0.034</td>
+</tr><tr>
+  <td>Event 14) Get: ecStat.min.js</td>
+  <td>-0.009</td>
+  <td>0.042</td>
+  <td>0.013</td>
+</tr><tr>
+  <td>Event 17) Get: bootstrap.min.js</td>
+  <td>-0.008</td>
+  <td>0.040</td>
+  <td>0.026</td>
+</tr><tr>
+  <td>Event 4) Get: shiny.min.js</td>
+  <td>-0.007</td>
+  <td>0.045</td>
+  <td>0.012</td>
+</tr><tr>
+  <td>Event 27) Updated: </td>
+  <td>-0.005</td>
+  <td>2.555</td>
+  <td>0.393</td>
+</tr><tr>
+  <td>Event 30) Stop Session</td>
+  <td>-0.004</td>
+  <td>0.018</td>
+  <td>0.013</td>
+</tr><tr>
+  <td>Event 15) Get: dataTool.min.js</td>
+  <td>-0.003</td>
+  <td>0.014</td>
+  <td>0.008</td>
+</tr><tr>
+  <td>Event 3) Get: shiny.min.css</td>
+  <td>-0.002</td>
+  <td>0.013</td>
+  <td>0.004</td>
+</tr><tr>
+  <td>Event 16) Get: echarts4r.js</td>
+  <td>-0.002</td>
+  <td>0.014</td>
+  <td>0.021</td>
+</tr><tr>
+  <td>Event 2) Get: jquery.min.js</td>
+  <td>-0.002</td>
+  <td>0.020</td>
+  <td>0.011</td>
+</tr><tr>
+  <td>Event 8) Get: bootstrap.min.css</td>
+  <td>-0.002</td>
+  <td>0.015</td>
+  <td>0.012</td>
+</tr><tr>
+  <td>Event 5) Get: shiny-testmode.js</td>
+  <td>-0.001</td>
+  <td>0.008</td>
+  <td>0.008</td>
+</tr><tr>
+  <td>Event 11) Get: selectize-plugin-a11y.min.js</td>
+  <td>0.001</td>
+  <td>-0.001</td>
+  <td>0.005</td>
+</tr><tr>
+  <td>Event 10) Get: Homepage</td>
+  <td>0.000</td>
+  <td>0.001</td>
+  <td>0.005</td>
+</tr><tr>
+  <td>Event 18) Get: bootstrap-accessibility.min.js</td>
+  <td>-0.000</td>
+  <td>0.006</td>
+  <td>0.012</td>
+</tr><tr>
+  <td>Event 6) Get: selectize.bootstrap3.css</td>
+  <td>0.000</td>
+  <td>0.002</td>
+  <td>0.018</td>
+</tr><tr>
+  <td>Event 7) Get: selectize.min.js</td>
+  <td>0.000</td>
+  <td>0.006</td>
+  <td>0.010</td>
+</tr><tr>
+  <td>Event 28) Set: echarts_plot_global_out:echarts4rParse</td>
+  <td>-0.000</td>
+  <td>0.001</td>
+  <td>0.002</td>
+</tr><tr>
+  <td>Event 12) Get: htmlwidgets.js</td>
+  <td>0.000</td>
+  <td>0.005</td>
+  <td>0.008</td>
+</tr><tr>
+  <td>Event 20) Set: var, col</td>
+  <td>-0.000</td>
+  <td>0.001</td>
+  <td>0.001</td>
+</tr><tr>
+  <td>Event 9) Get: bootstrap-accessibility.min.css</td>
+  <td>-0.000</td>
+  <td>0.003</td>
+  <td>0.006</td>
+</tr><tr>
+  <td>Event 26) Set: echarts_plot_global_out:echarts4rParse</td>
+  <td>0.000</td>
+  <td>-0.000</td>
+  <td>0.001</td>
+</tr><tr>
+  <td>Event 21) Initialize Session</td>
+  <td>-0.000</td>
+  <td>0.000</td>
+  <td>0.001</td>
+</tr><tr>
+  <td>Event 24) Set: echarts_plot_global_out:echarts4rParse</td>
+  <td>0.000</td>
+  <td>0.000</td>
+  <td>0.001</td>
+</tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="load-test/js/sui.js"></script>
+    <script src="load-test/js/shinyloadtest.js"></script>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <!-- You MUST include jQuery before Fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <title>shinyValidator</title>
+  </head>
+  <body>
+    <div class="ui pointing menu">
+  <a class="item" data-tab="check">Package check</a>
+  <a class="item" data-tab="crash-test">Crash test</a>
+  <a class="item" data-tab="output">Output validation</a>
+  <a class="item" data-tab="coverage">Coverage</a>
+  <a class="item" data-tab="load-test">Load test</a>
+  <a class="item" data-tab="reactlog">Reactivity</a>
+  <a class="item" data-tab="code-profile">Code profile</a>
+  <div class="right menu">
+    <a class="ui item">shinyValidatorTest2</a>
+    <a class="ui tag label">0.0.0.9000</a>
+  </div>
+</div>
+    <div class="ui tab" data-tab="check">
+  <div class="ui container" style="margin: auto; width: 85%;">
+    <div class="ui raised tall stacked segment">
+      <a class="ui primary right ribbon label">
+        Project check
+        <i class="question circle icon"></i>
+      </a>
+      <div class="ui mini steps">
+        <div class="link step">
+          <i class="green check icon"></i>
+          <div class="content">
+            <div class="title">Building</div>
+            <div class="description" style="white-space: pre-line;">* installing *source* package ‘shinyValidatorTest2’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shinyValidatorTest2)
+</div>
+          </div>
+        </div>
+        <div class="link step">
+          <i class="green check icon"></i>
+          <div class="content">
+            <div class="title">Checking</div>
+            <div class="description" style="white-space: pre-line;">
+              <div class="ui blue message">checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘tibble’
+  All declared Imports should be used.</div>
+            </div>
+          </div>
+        </div>
+        <div class="link step">
+          <i class="green check icon"></i>
+          <div class="content">
+            <div class="title">Testing</div>
+            <div class="description" style="white-space: pre-line;">
+R version 4.1.3 (2022-03-10) -- "One Push-Up"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(testthat)
+> library(shinyValidatorTest2)
+> 
+> test_check("shinyValidatorTest2")
+Loading required package: shiny
+[ FAIL 0 | WARN 0 | SKIP 2 | PASS 0 ]
+
+══ Skipped tests ═══════════════════════════════════════════════════════════════
+• On CRAN (2)
+
+[ FAIL 0 | WARN 0 | SKIP 2 | PASS 0 ]
+> 
+> proc.time()
+   user  system elapsed 
+  2.063   0.109   2.244 </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="ui tab" data-tab="crash-test">
+  <div class="ui container" style="margin: auto; width: 85%;">
+    <div class="ui raised tall stacked segment">
+      <a class="ui primary right ribbon label">
+        Crash test
+        <i class="question circle icon"></i>
+      </a>
+      <div class="ui equal width grid">
+        <div class="eight wide column">
+          <h2 class="ui header">1-init-crash</h2>
+          <img src="./crash-test/1-init-crash.png" width="100%"/>
+        </div>
+        <div class="eight wide column">
+          <h2 class="ui header">2-gremlins</h2>
+          <img src="./crash-test/2-gremlins.png" width="100%"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="ui tab" data-tab="output">
+  <div class="ui container" style="margin: auto; width: 85%;">
+    <div class="ui raised tall stacked segment">
+      <a class="ui primary right ribbon label">
+        Output validation
+        <i class="question circle icon"></i>
+      </a>
+      <div class="ui equal width grid">
+        <div class="eight wide column">
+          <iframe src="./outputs/ggplot-validation.html" frameborder="0" scrolling="yes" width="100%" height="770px"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="ui tab" data-tab="coverage">
+  <div class="ui container" style="margin: auto; width: 85%;">
+    <div class="ui raised tall stacked segment">
+      <a class="ui primary right ribbon label">
+        Coverage
+        <i class="question circle icon"></i>
+      </a>
+      <iframe src="./coverage.html" frameborder="0" scrolling="yes" width="100%" height="770px"></iframe>
+    </div>
+  </div>
+</div>
+<div class="ui tab" data-tab="load-test">
+  <div class="ui container" style="margin: auto; width: 85%;">
+    <div class="ui raised tall stacked segment">
+      <a class="ui primary right ribbon label">
+        Load test
+        <i class="question circle icon"></i>
+      </a>
+      <iframe src="./load-test.html" frameborder="0" scrolling="yes" width="100%" height="770px"></iframe>
+    </div>
+  </div>
+</div>
+<div class="ui tab" data-tab="reactlog">
+  <div class="ui container" style="margin: auto; width: 85%;">
+    <div class="ui raised tall stacked segment">
+      <a class="ui primary right ribbon label">
+        Reactivity
+        <i class="question circle icon"></i>
+      </a>
+      <iframe src="./reactlog.html" frameborder="0" scrolling="yes" width="100%" height="770px"></iframe>
+    </div>
+  </div>
+</div>
+<div class="ui tab" data-tab="code-profile">
+  <div class="ui container" style="margin: auto; width: 85%;">
+    <div class="ui raised tall stacked segment">
+      <a class="ui primary right ribbon label">
+        Code profile
+        <i class="question circle icon"></i>
+      </a>
+      <br/>
+      <iframe src="./code-profile.html" frameborder="0" scrolling="yes" width="100%" height="770px"></iframe>
+    </div>
+  </div>
+</div>
+    <div class="ui basic modal">
+      <div class="ui icon header">
+        Welcome to the Shiny App validator
+      </div>
+      <div class="content">
+        <p>Please inspect all sections ...</p>
+      </div>
+      <div class="actions">
+          <div class="ui green ok inverted button">
+              <i class="checkmark icon"></i>
+              ok
+            </div>
+      </div>
+    </div>
+      <script>$('.pointing.menu .item').tab(); // activate navigation
+         $('.ui.basic.modal')
+           .modal({
+               blurring: true
+           })
+           .modal('show');
+           $('[data-tab="check"] .ribbon')
+     .popup({
+       title   : 'Package check',
+       content : 'Package is first built. Any error is shown in case the installation fails. Package is checked for consistency (style, files, ...). Unit tests are run. Overall you want to see all green.'
+     });
+$('[data-tab="crash-test"] .ribbon')
+     .popup({
+       title   : 'Crash test',
+       content : 'Crash test ensures the app starts and takes a snapshot when the app is loaded. Then, the app is manipulated with headless browser and check for alive. Another snapshot is taken.'
+     });
+$('[data-tab="output"] .ribbon')
+     .popup({
+       title   : 'Output validation',
+       content : 'The report shows noticed output differences found during unit testing. It is the business user responsibility to decide whether to accept the difference(s).'
+     });
+$('[data-tab="coverage"] .ribbon')
+     .popup({
+       title   : 'Coverage',
+       content : 'Code coverage shows the amounts of code covered by unit tests. The higher the coverage, the higher the package reliability (assuming relevant unit tests).'
+     });
+$('[data-tab="load-test"] .ribbon')
+     .popup({
+       title   : 'Load test',
+       content : 'Load testing consists of checking whether the app can support multiple simultaneous sessions with reasonable performances. If you see a lot of blue area in the session tab, the app is likely not very well optimized.'
+     });
+$('[data-tab="reactlog"] .ribbon')
+     .popup({
+       title   : 'Reactivity',
+       content : '{reactlog} represents the reactive graph of the Shiny app. It is useful to identify and fix reactivity-related issues.'
+     });
+$('[data-tab="code-profile"] .ribbon')
+     .popup({
+       title   : 'Code profile',
+       content : '{profvis} runs the app and returns the time taken by the R code to finish. The lower the result, the higher the performances. It is useful to identify bottlenecks.'
+     });
+         </script>
+  </body>
+</html>
+

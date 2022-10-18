@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='288.00pt' height='288.00pt' viewBox='0 0 288.00 288.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHwyODguMDB8MC4wMHwyODguMDA='>
+    <rect x='0.00' y='0.00' width='288.00' height='288.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyODguMDA=)'>
+<rect x='0.00' y='0.00' width='288.00' height='288.00' style='stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpNTUuMzN8MjgyLjUyfDIyLjY0fDI2OS4xOQ=='>
+    <rect x='55.33' y='22.64' width='227.19' height='246.55' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNTUuMzN8MjgyLjUyfDIyLjY0fDI2OS4xOQ==)'>
+<rect x='55.33' y='22.64' width='227.19' height='246.55' style='stroke-width: 1.07; stroke: none; fill: #EBEBEB;' />
+<polyline points='55.33,229.97 282.52,229.97 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,173.94 282.52,173.94 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,117.90 282.52,117.90 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,61.87 282.52,61.87 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,257.99 282.52,257.99 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,201.95 282.52,201.95 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,145.92 282.52,145.92 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,89.88 282.52,89.88 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='55.33,33.85 282.52,33.85 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='168.92,269.19 168.92,22.64 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
+<circle cx='168.92' cy='33.85' r='1.95' style='stroke-width: 0.71; stroke: #333333; fill: #333333;' />
+<circle cx='168.92' cy='33.85' r='1.95' style='stroke-width: 0.71; stroke: #333333; fill: #333333;' />
+<circle cx='168.92' cy='33.85' r='1.95' style='stroke-width: 0.71; stroke: #333333; fill: #333333;' />
+<circle cx='168.92' cy='33.85' r='1.95' style='stroke-width: 0.71; stroke: #333333; fill: #333333;' />
+<line x1='168.92' y1='257.99' x2='168.92' y2='257.99' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<line x1='168.92' y1='257.99' x2='168.92' y2='257.99' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polygon points='97.93,257.99 97.93,257.99 239.92,257.99 239.92,257.99 97.93,257.99 ' style='stroke-width: 1.07; stroke: #333333; fill: #7FC97F;' />
+<line x1='97.93' y1='257.99' x2='239.92' y2='257.99' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;' />
+</g>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyODguMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNTUuMzN8MjgyLjUyfDUuNDh8MjIuNjQ='>
+    <rect x='55.33' y='5.48' width='227.19' height='17.16' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNTUuMzN8MjgyLjUyfDUuNDh8MjIuNjQ=)'>
+<rect x='55.33' y='5.48' width='227.19' height='17.16' style='stroke-width: 1.07; stroke: none; fill: #D9D9D9;' />
+<text x='168.92' y='17.31' text-anchor='middle' style='font-size: 8.80px;fill: #1A1A1A; font-family: "Liberation Sans";' textLength='106.56px' lengthAdjust='spacingAndGlyphs'>Event 21) Initialize Session</text>
+</g>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyODguMDA=)'>
+<polyline points='168.92,271.93 168.92,269.19 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<text x='168.92' y='280.63' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='18.24px' lengthAdjust='spacingAndGlyphs'>run1</text>
+<text x='50.40' y='261.24' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='31.68px' lengthAdjust='spacingAndGlyphs'>0.00000</text>
+<text x='50.40' y='205.20' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='31.68px' lengthAdjust='spacingAndGlyphs'>0.00025</text>
+<text x='50.40' y='149.17' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='31.68px' lengthAdjust='spacingAndGlyphs'>0.00050</text>
+<text x='50.40' y='93.13' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='31.68px' lengthAdjust='spacingAndGlyphs'>0.00075</text>
+<text x='50.40' y='37.10' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='31.68px' lengthAdjust='spacingAndGlyphs'>0.00100</text>
+<polyline points='52.59,257.99 55.33,257.99 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='52.59,201.95 55.33,201.95 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='52.59,145.92 55.33,145.92 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='52.59,89.88 55.33,89.88 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='52.59,33.85 55.33,33.85 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<text transform='translate(13.61,145.92) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Liberation Sans";' textLength='54.03px' lengthAdjust='spacingAndGlyphs'>Time (sec)</text>
+</g>
+</svg>

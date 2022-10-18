@@ -1,0 +1,110 @@
+# Setup {shinyValidator}
+
+## {golem} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+path <- file.path(tempdir(), "mypkg") 
+golem::create_golem(path)
+# ...
+```
+
+## {golem} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+path <- file.path(tempdir(), "mypkg") 
+golem::create_golem(path)
+usethis::use_mit_license() # or whatever license
+usethis::use_testthat()
+usethis::use_test("dummy")
+usethis::use_git()
+usethis::use_github() # make sure to have a valid GITHUB_PAT
+# ...
+```
+
+## {renv} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+system("echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' >> .Renviron")
+```
+
+## {renv} {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+system("echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' >> .Renviron")
+
+# SCAN the project and look for dependencies
+renv::init()
+# install missing packages
+renv::install("<PACKAGE>")
+# Capture new dependencies after package installation
+renv::snapshot()
+```
+
+## Install {shinyValidator}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "4"
+devtools::install_github("Novartis/shinyValidator")
+library(shinyValidator)
+# At the root of your R package
+use_validator("github")
+devtools::document() # update help
+renv::snapshot()
+```
+
+# {shinyValidator}: step by step
+
+## Overall concept
+
+```{mermaid}
+%%{init: {'theme':'dark'}}%%
+graph TD
+  A(Shiny Project) --> B(DMC App)
+  A --> C(Poof of concept App POC)
+  B --> |strict| D[Expectations]
+  C --> |low| D
+  D --> |DMC| F
+  D --> |POC| H
+  F --> |create| J(Global HTML report)
+  H --> J
+  J --> |deploy| K(Deployment server)
+  subgraph DMC CI/CD pipeline
+    direction LR
+    E[Lint]
+    F[Quality/crash tests]
+    G[Performance tests]
+  end
+  subgraph POC CI/CD pipeline
+    direction LR
+    H[Lint]
+    I[Quality/crash tests]
+  end
+  click A callback "Tooltip for a callback"
+  click B callback "DMC: data monitoring committee"
+  click D callback "Apps have different expectations"
+  click E callback "Lint code: check code formatting, style, ..."
+  click F callback "Run R CMD check + headless crash test (shinytest2)"
+  click G callback "Optional tests: profiling, load test, ..."
+  click J callback "HTML reports with multiple tabs"
+  click K callback "RStudio Connect, GitLab/GitHub pages, ..."
+```
+
+## Report example
+
+<iframe src="./assets/shinyvalidator-report/index.html"
+title="shinyValidator html report" width="100%" height="100%">
+</iframe>
+
+## GitLab/GitHub
+
+![shinyValidator on GitLab CI](assets/images/png/gitlab-pipeline.png)
