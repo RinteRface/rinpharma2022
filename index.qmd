@@ -15,6 +15,7 @@ format:
     template-partials: 
       - title-slide.html
     chalkboard: true
+    #preview-links: true
 highlight-style: dracula
 ---
 
@@ -26,3 +27,4 @@ library(dRacula)
 {{< include template/_welcome.qmd >}}
 {{< include template/_introduction.qmd >}}
 {{< include template/_setup.qmd >}}
+{{< include template/_improve.qmd >}}

@@ -2,20 +2,25 @@
 
 ## {golem} {auto-animate=true}
 
+We create an empty `{golem}` project:
+
 ```{r}
 #| eval: false
 #| echo: true
-path <- file.path(tempdir(), "mypkg") 
+path <- file.path("<FOLDER>", "mypkg") 
 golem::create_golem(path)
 # ...
 ```
 
 ## {golem} {auto-animate=true}
 
+We add some useful files, basic test and
+ link to git:
+
 ```{r}
 #| eval: false
 #| echo: true
-path <- file.path(tempdir(), "mypkg") 
+path <- file.path("<FOLDER>", "mypkg") 
 golem::create_golem(path)
 usethis::use_mit_license() # or whatever license
 usethis::use_testthat()
@@ -26,6 +31,8 @@ usethis::use_github() # make sure to have a valid GITHUB_PAT
 ```
 
 ## {renv} {auto-animate=true}
+
+Initialize `{renv}` for R package dependencies:
 
 ```{r}
 #| eval: false
@@ -98,18 +105,11 @@ flowchart TD
   click K callback "RStudio Connect, GitLab/GitHub pages, ..."
 ```
 
-## Report example
+## CI/CD
 
-<iframe src="./assets/shinyvalidator-report/index.html"
-title="shinyValidator html report" width="100%" height="100%">
-</iframe>
+::: {.panel-tabset}
 
-## GitLab/GitHub
-
-![shinyValidator on GitLab CI](assets/images/png/gitlab-pipeline.png)
-
-
-## CI/CD file: branches
+### Control branches
 
 In case you need to control branches triggering `{shinyValidator}`:
 
@@ -146,7 +146,7 @@ gitGraph
 
 ::::
 
-## CI/CD file: strategy 
+### Control strategy 
 
 If you have to change the R version, os, ...:
 
@@ -160,33 +160,8 @@ strategy:
       - {os: ubuntu-latest,   r: 'oldrel-1'}
 ```
 
-## CI/CD file: steps {auto-animate=true}
 
-Code is first linted:
-
-```yaml
-- name: Lint code
-  shell: Rscript {0}
-  run: shinyValidator::lint_code()
-```
-
-## CI/CD file: steps {auto-animate=true}
-
-The app undergo a series of validations:
-
-```yaml
-- name: Lint code
-  shell: Rscript {0}
-  run: shinyValidator::lint_code()
-
-- name: Audit app 🏥
-  shell: Rscript {0}
-  run: shinyValidator::audit_app()
-```
-
-## CI/CD file: steps {auto-animate=true}
-
-The report is deployed to GitHub pages:
+### Steps
 
 ```yaml
 - name: Lint code
@@ -205,6 +180,8 @@ The report is deployed to GitHub pages:
     branch: gh-pages
     folder: public
 ```
+
+:::
 
 ## Audit app
 
@@ -306,3 +283,52 @@ graph LR
 :::
 
 ::::
+
+## Audit app: headless manipulation
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| echo: true
+# Path is an internal parameter you don't need to change. 
+# app refers to the headless app instance.
+custom_horde <- {
+  app$set_inputs(obs = 30)
+  app$get_screenshot(file.path(path, "plop.png"))
+  # ... pass any other commands from shinytest2 API
+}
+```
+:::
+
+::: {.column width="50%"}
+<img src="assets/images/svg/shinytest2.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+:::
+
+::::
+
+## About monkey testing
+
+`run_crash_test()` runs a `gremlins.js` [test](https://marmelab.com/gremlins.js/) if no 
+headless action are passed:
+
+<center>{{< video assets/video/monkey-test.mp4
+    title="Monkey testing for Shiny app" height= "400px" >}}</center>
+
+## Report example
+
+<iframe src="./assets/shinyvalidator-report/index.html"
+title="shinyValidator html report" width="100%" height="100%">
+</iframe>
+
+## GitLab/GitHub
+
+![shinyValidator on GitLab CI](assets/images/png/gitlab-pipeline.png)
+
+## Run our first pipeline
+
+1. Make sure GitHub [Pages](https://github.com/DivadNojnarg/RtmpXU8dBM/settings/pages) is enabled.
+2. Commit and push the code to GitHub.
+3. You can follow the GitHub actions logs.
+4. When done, open the report an discuss results.
