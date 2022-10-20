@@ -28,3 +28,11 @@ $tabset-border-color: $body-bg;
   border-color: $code-bg !important;
   padding: 5px !important;
 }
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

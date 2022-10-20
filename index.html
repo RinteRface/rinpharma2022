@@ -396,7 +396,7 @@
 <section id="title-slide" class="center"><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><script src="./assets/js/custom.js"></script><h1 class="title drac-heading drac-heading-xl drac-text-white">
     An introduction to <span class="drac-badge drac-bg-purple-cyan drac-text-black">{shinyValidator}</span>
   </h1>
-  <br><p class="subtitle">2022-10-19</p>
+  <br><p class="subtitle">2022-10-20</p>
   <p class="author">David Granjon, Novartis</p>
 </section><section><section id="welcome" class="title-slide slide level1 center"><h1>Welcome</h1>
 <p>We’re in for 2 hours of <strong>fun</strong>!</p>
@@ -883,9 +883,171 @@ graph LR
 <li>Commit and push the code to GitHub.</li>
 <li>You can follow the GitHub actions logs.</li>
 <li>When done, open the report an discuss results.</li>
-</ol></section></section><section><section id="improve" class="title-slide slide level1 center"><h1>Improve</h1>
+<li>Time to add some real things!</li>
+</ol></section></section><section><section id="improve" class="title-slide slide level1 vertical-center center"><h1>Improve</h1>
 
-</section><section id="add-server-testing" class="slide level2"><h2>Add server testing</h2>
+</section><section id="disable-other-checks" class="slide level2"><h2>Disable other checks</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Audit app 🏥</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::audit_app(load_testing = FALSE, profile_code = FALSE, check_reactivity = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div class="drac-box drac-card drac-bg-purple drac-p-md drac-m-md drac-rounded-full drac-h-auto drac-w-auto drac-scrollbar-purple drac-card-subtle drac-text-purple drac-border-red" variant="subtle">
+<span class="drac-text drac-text-red drac-line-height drac-text-left drac-text-bold drac-text-lg">For learning purposes we disable load test, profiling, ...</span>
+</div>
+</div>
+</div>
+</div>
+</section><section id="put-some-real-server-code" class="slide level2"><h2>Put some real server code</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Copy this into <code>app_server.R</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">hist</span>(<span class="fu">rnorm</span>(input<span class="sc">$</span>obs))</span>
+<span id="cb15-3"><a href="#cb15-3"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Copy this into <code>app_ui.R</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">fluidPage</span>(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">sliderInput</span>(</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="st">"obs"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="st">"Number of observations:"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    <span class="at">min =</span> <span class="dv">0</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    <span class="at">max =</span> <span class="dv">1000</span>,</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="at">value =</span> <span class="dv">500</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  ),</span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section><section id="add-server-testing" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Add server testing</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb17-1" class="hljs-ln-code"><a href="#cb17-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">"app-server-test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="add-server-testing-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Add server testing</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|3|4|6|7|8|9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb18-1" class="hljs-ln-code"><a href="#cb18-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">"app-server-test"</span>)</span>
+<span id="cb18-2" class="hljs-ln-code"><a href="#cb18-2"></a><span class="co"># Inside app-server-test</span></span>
+<span id="cb18-3" class="hljs-ln-code"><a href="#cb18-3"></a><span class="fu">testServer</span>(app_server, {</span>
+<span id="cb18-4" class="hljs-ln-code"><a href="#cb18-4"></a>  session<span class="sc">$</span><span class="fu">setInputs</span>(<span class="at">obs =</span> <span class="dv">0</span>)</span>
+<span id="cb18-5" class="hljs-ln-code"><a href="#cb18-5"></a>  <span class="co"># There should be an error</span></span>
+<span id="cb18-6" class="hljs-ln-code"><a href="#cb18-6"></a>  <span class="fu">expect_error</span>(output<span class="sc">$</span>distPlot)</span>
+<span id="cb18-7" class="hljs-ln-code"><a href="#cb18-7"></a>  session<span class="sc">$</span><span class="fu">setInputs</span>(<span class="at">obs =</span> <span class="dv">100</span>)</span>
+<span id="cb18-8" class="hljs-ln-code"><a href="#cb18-8"></a>  <span class="fu">str</span>(output<span class="sc">$</span>distPlot)</span>
+<span id="cb18-9" class="hljs-ln-code"><a href="#cb18-9"></a>})</span>
+<span id="cb18-10" class="hljs-ln-code"><a href="#cb18-10"></a><span class="co"># Test it</span></span>
+<span id="cb18-11" class="hljs-ln-code"><a href="#cb18-11"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div class="drac-box drac-card drac-bg-purple drac-p-md drac-m-md drac-rounded-full drac-h-auto drac-w-auto drac-scrollbar-purple drac-card-subtle drac-text-purple drac-border-red" variant="subtle">
+<span class="drac-text drac-text-red drac-line-height drac-text-left drac-text-bold drac-text-lg">Server tests are run without the UI, inputs have to be changed manually with session.</span>
+</div>
+</div>
+</div>
+</div>
+</section><section id="time-to-commit-and-push" class="slide level2"><h2>Time to commit and push</h2>
+</section><section id="output-checks-13" class="slide level2"><h2>Output checks (1/3)</h2>
+<p>Create this function in <code>helpers.R</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>make_hist <span class="ot">&lt;-</span> <span class="cf">function</span>(val) {</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">hist</span>(<span class="fu">rnorm</span>(val))</span>
+<span id="cb19-3"><a href="#cb19-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Add it to <code>app_server.R</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">make_hist</span>(input<span class="sc">$</span>obs)</span>
+<span id="cb20-3"><a href="#cb20-3"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Enable output check in <code>audit_app.R</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Audit app 🏥</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::audit_app(output_validation = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="output-checks-23" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Output checks (2/3)</h2>
+<p>Create a new test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb22-1" class="hljs-ln-code"><a href="#cb22-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">"test-base-plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="output-checks-23-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Output checks (2/3)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="|2|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb23-1" class="hljs-ln-code"><a href="#cb23-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">"test-base-plot"</span>)</span>
+<span id="cb23-2" class="hljs-ln-code"><a href="#cb23-2"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"vdiffr"</span>)</span>
+<span id="cb23-3" class="hljs-ln-code"><a href="#cb23-3"></a><span class="co"># Inside test-base-plot</span></span>
+<span id="cb23-4" class="hljs-ln-code"><a href="#cb23-4"></a><span class="fu">test_that</span>(<span class="st">"Base plot OK"</span>, {</span>
+<span id="cb23-5" class="hljs-ln-code"><a href="#cb23-5"></a>  <span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># to avoid the test from failing due to randomness :)</span></span>
+<span id="cb23-6" class="hljs-ln-code"><a href="#cb23-6"></a>  vdiffr<span class="sc">::</span><span class="fu">expect_doppelganger</span>(<span class="st">"Base graphics histogram"</span>, <span class="fu">make_hist</span>(<span class="dv">500</span>))</span>
+<span id="cb23-7" class="hljs-ln-code"><a href="#cb23-7"></a>})</span>
+<span id="cb23-8" class="hljs-ln-code"><a href="#cb23-8"></a><span class="co"># Test it</span></span>
+<span id="cb23-9" class="hljs-ln-code"><a href="#cb23-9"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div class="drac-box drac-card drac-bg-purple drac-p-md drac-m-md drac-rounded-full drac-h-auto drac-w-auto drac-scrollbar-purple drac-card-subtle drac-text-purple drac-border-red" variant="subtle">
+<span class="drac-text drac-text-red drac-line-height drac-text-left drac-text-bold drac-text-lg">A svg snapshot is created during first run. If you change the plot, snapshots are compared.</span>
+</div>
+</div>
+</div>
+</div>
+</section><section id="output-checks-33" class="slide level2"><h2>Output checks (3/3)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We slightly modify <code>make_hist()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>make_hist <span class="ot">&lt;-</span> <span class="cf">function</span>(val) {</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">hist</span>(<span class="fu">rnorm</span>(val <span class="sc">*</span> <span class="dv">2</span>))</span>
+<span id="cb24-3"><a href="#cb24-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And run the test again:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Failure may be reviewed with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>testthat<span class="sc">::</span><span class="fu">snapshot_review</span>(<span class="st">'basic-plot'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<iframe src="./assets/output-validation-example/ggplot-validation.html" title="Output validation widget with {diffviewer}" width="100%" height="550px" style="margin-left: 30px">
+</iframe>
+</div>
+</div>
+</section><section id="performance-code-profiling-12" class="slide level2"><h2>Performance: Code profiling (1/2)</h2>
+<p>Add this function to <code>helpers.R</code><sup>1</sup>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>slow_func <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb27-2"><a href="#cb27-2"></a>  vec <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="co"># Or vec = c()</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n))</span>
+<span id="cb27-4"><a href="#cb27-4"></a>    vec <span class="ot">&lt;-</span> <span class="fu">c</span>(vec, i)</span>
+<span id="cb27-5"><a href="#cb27-5"></a>  vec</span>
+<span id="cb27-6"><a href="#cb27-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Add it to <code>app_server.R</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>app_server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb28-2"><a href="#cb28-2"></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="fu">slow_func</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="fu">make_hist</span>(input<span class="sc">$</span>obs)</span>
+<span id="cb28-5"><a href="#cb28-5"></a>  })</span>
+<span id="cb28-6"><a href="#cb28-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html</p></li></ol></aside></section><section id="performance-code-profiling-22" class="slide level2"><h2>Performance: Code profiling (2/2)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Enable profiling in CI/CD:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Audit app 🏥</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::audit_app(load_testing = FALSE, check_reactivity = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Commit, push, wait and review the profiling tab …</p>
+</div><div class="column" style="width:50%;">
+<p>TO DO: add profiling widget …</p>
+</div>
+</div>
 <div class="footer footer-default">
 <p>Novartis, 2022</p>
 </div>

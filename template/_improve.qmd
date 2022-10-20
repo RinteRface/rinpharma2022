@@ -1,3 +1,264 @@
-# Improve
+# Improve {.vertical-center}
 
-## Add server testing
+## Disable other checks
+
+```yaml
+- name: Audit app 🏥
+  shell: Rscript {0}
+  run: shinyValidator::audit_app(load_testing = FALSE, profile_code = FALSE, check_reactivity = FALSE)
+```
+
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "For learning purposes we disable load test, profiling, ..."
+  )
+)
+```
+
+## Put some real server code
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Copy this into `app_server.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+output$distPlot <- renderPlot({
+  hist(rnorm(input$obs))
+})
+```
+:::
+
+::: {.column width="50%"}
+Copy this into `app_ui.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+fluidPage(
+  sliderInput(
+    "obs",
+    "Number of observations:",
+    min = 0,
+    max = 1000,
+    value = 500
+  ),
+  plotOutput("distPlot")
+)
+```
+:::
+
+::::
+
+
+## Add server testing {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+usethis::use_test("app-server-test")
+```
+
+## Add server testing {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "|3|4|6|7|8|9"
+usethis::use_test("app-server-test")
+# Inside app-server-test
+testServer(app_server, {
+  session$setInputs(obs = 0)
+  # There should be an error
+  expect_error(output$distPlot)
+  session$setInputs(obs = 100)
+  str(output$distPlot)
+})
+# Test it
+devtools::test()
+```
+
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "Server tests are run without the UI, inputs have to be changed manually with session."
+  )
+)
+```
+
+## Time to commit and push
+
+
+## Output checks (1/3)
+
+Create this function in `helpers.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+make_hist <- function(val) {
+  hist(rnorm(val))
+}
+```
+
+Add it to `app_server.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+output$distPlot <- renderPlot({
+  make_hist(input$obs)
+})
+```
+
+Enable output check in `audit_app.R`:
+
+```yaml
+- name: Audit app 🏥
+  shell: Rscript {0}
+  run: shinyValidator::audit_app(output_validation = TRUE)
+```
+
+## Output checks (2/3) {auto-animate=true}
+
+Create a new test:
+
+```{r}
+#| eval: false
+#| echo: true
+usethis::use_test("test-base-plot")
+```
+
+## Output checks (2/3) {auto-animate=true}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "|2|4|5|6"
+usethis::use_test("test-base-plot")
+renv::install("vdiffr")
+# Inside test-base-plot
+test_that("Base plot OK", {
+  set.seed(42) # to avoid the test from failing due to randomness :)
+  vdiffr::expect_doppelganger("Base graphics histogram", make_hist(500))
+})
+# Test it
+devtools::test()
+```
+
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "A svg snapshot is created during first run. If you change the plot, snapshots are compared."
+  )
+)
+```
+
+## Output checks (3/3) 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+We slightly modify `make_hist()`:
+
+```{r}
+#| eval: false
+#| echo: true
+make_hist <- function(val) {
+  hist(rnorm(val * 2))
+}
+```
+
+And run the test again:
+
+```{r}
+#| eval: false
+#| echo: true
+devtools::test()
+```
+
+Failure may be reviewed with:
+
+```{r}
+#| eval: false
+#| echo: true
+testthat::snapshot_review('basic-plot')
+```
+:::
+
+:::{.column width="50%"}
+<iframe src="./assets/output-validation-example/ggplot-validation.html"
+title="Output validation widget with {diffviewer}" width="100%" height="550px" style="margin-left: 30px">
+</iframe>
+:::
+
+::::
+
+
+## Performance: Code profiling (1/2)
+
+Add this function to `helpers.R`^[Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html]:
+
+```{r}
+#| eval: false
+#| echo: true
+slow_func <- function(n) {
+  vec <- NULL # Or vec = c()
+  for (i in seq_len(n))
+    vec <- c(vec, i)
+  vec
+}
+```
+
+Add it to `app_server.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+app_server <- function(input, output, session) {
+  output$distPlot <- renderPlot({
+    slow_func(10^6)
+    make_hist(input$obs)
+  })
+}
+```
+
+## Performance: Code profiling (2/2)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Enable profiling in CI/CD:
+
+```yaml
+- name: Audit app 🏥
+  shell: Rscript {0}
+  run: shinyValidator::audit_app(load_testing = FALSE, check_reactivity = FALSE)
+```
+
+Commit, push, wait and review the profiling tab ...
+:::
+
+::: {.column width="50%"}
+TO DO: add profiling widget ...
+:::
+
+::::

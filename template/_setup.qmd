@@ -332,3 +332,4 @@ title="shinyValidator html report" width="100%" height="100%">
 2. Commit and push the code to GitHub.
 3. You can follow the GitHub actions logs.
 4. When done, open the report an discuss results.
+5. Time to add some real things!
