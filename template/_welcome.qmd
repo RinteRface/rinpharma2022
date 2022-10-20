@@ -25,3 +25,23 @@ cd rinpharma2022
 ```
 
 Then run `renv::restore()` to install the dependencies.
+
+## Pre-requisites
+
+If you want to run `{shinyValidator}` locally (not on CI/CD), you must have:
+
+- `shinycannon` installed for the load-test part. See [here](https://rstudio.github.io/shinyloadtest/articles/shinycannon.html).
+- A chrome browser installed like [chromium](https://www.chromium.org/getting-involved/download-chromium/). 
+
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "This workshop is recorded. If it does not work for you, it is better to listen and stay on track. Fear not! You can retry later on your side with the recording. "
+  )
+)
+```
