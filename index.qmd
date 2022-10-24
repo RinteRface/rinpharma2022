@@ -28,3 +28,4 @@ library(dRacula)
 {{< include template/_introduction.qmd >}}
 {{< include template/_setup.qmd >}}
 {{< include template/_improve.qmd >}}
+{{< include template/_cicd.qmd >}}

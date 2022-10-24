@@ -2,10 +2,17 @@
 
 ## Disable other checks
 
-```yaml
-- name: Audit app 🏥
-  shell: Rscript {0}
-  run: shinyValidator::audit_app(load_testing = FALSE, profile_code = FALSE, check_reactivity = FALSE)
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "2-7"
+shinyValidator::audit_app(
+  load_testing = FALSE, 
+  coverage = FALSE, 
+  profile_code = FALSE, 
+  check_reactivity = FALSE, 
+  debug = TRUE
+)
 ```
 
 ```{r}
@@ -16,7 +23,7 @@ dracula_card(
     color = "red",
     weight = "bold",
     size = "lg",
-    "For learning purposes we disable load test, profiling, ..."
+    "For learning purposes we disable load test, profiling, ... at the moment ..."
   )
 )
 ```
@@ -102,6 +109,28 @@ dracula_card(
 ## Time to commit and push
 
 
+## Customize Crash test
+
+Leverage `{shinytest2}` power^[See: https://rstudio.github.io/shinytest2/articles/in-depth.html], `app` being the Shiny app to audit. 
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "2-7"
+shinyValidator::audit_app(
+  {
+    app$set_inputs(obs = 1000)
+    app$get_screenshot("plop.png")
+  },
+  load_testing = FALSE, 
+  coverage = FALSE, 
+  profile_code = FALSE, 
+  check_reactivity = FALSE, 
+  debug = TRUE, 
+)
+```
+
+
 ## Output checks (1/3)
 
 Create this function in `helpers.R`:
@@ -126,10 +155,18 @@ output$distPlot <- renderPlot({
 
 Enable output check in `audit_app.R`:
 
-```yaml
-- name: Audit app 🏥
-  shell: Rscript {0}
-  run: shinyValidator::audit_app(output_validation = TRUE)
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "2-7"
+shinyValidator::audit_app(
+  load_testing = FALSE, 
+  coverage = FALSE, 
+  profile_code = FALSE, 
+  check_reactivity = FALSE, 
+  output_validation = TRUE,
+  debug = TRUE
+)
 ```
 
 ## Output checks (2/3) {auto-animate=true}
@@ -212,7 +249,6 @@ title="Output validation widget with {diffviewer}" width="100%" height="550px" s
 
 ::::
 
-
 ## Performance: Code profiling (1/2)
 
 Add this function to `helpers.R`^[Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html]:
@@ -235,30 +271,39 @@ Add it to `app_server.R`:
 #| echo: true
 app_server <- function(input, output, session) {
   output$distPlot <- renderPlot({
-    slow_func(10^6)
+    slow_func(5*10^4) # you may reduce if needed
     make_hist(input$obs)
   })
 }
 ```
 
-## Performance: Code profiling (2/2)
+## Performance: Code profiling (2/3)
 
-:::: {.columns}
+We have to modify the custom headless script by adding a __timeout__:
 
-::: {.column width="50%"}
-Enable profiling in CI/CD:
-
-```yaml
-- name: Audit app 🏥
-  shell: Rscript {0}
-  run: shinyValidator::audit_app(load_testing = FALSE, check_reactivity = FALSE)
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "3,6"
+shinyValidator::audit_app(
+  {
+    app$set_inputs(obs = 1000, timeout_ = 15 * 1000)
+    app$get_screenshot("plop.png")
+  },
+  timeout = 15,
+  load_testing = FALSE, 
+  coverage = FALSE, 
+  profile_code = TRUE, 
+  check_reactivity = FALSE, 
+  debug = TRUE, 
+)
 ```
 
-Commit, push, wait and review the profiling tab ...
-:::
+Run the pipeline, wait and review the 
+report.
 
-::: {.column width="50%"}
-TO DO: add profiling widget ...
-:::
 
-::::
+## Performance: Code profiling (3/3)
+
+<iframe src="./assets/code-profile-example/code-profile.html"
+title="Output validation widget with {diffviewer}" width="100%" height="550px" style="margin-left: 30px">

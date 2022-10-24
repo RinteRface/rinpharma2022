@@ -1,0 +1,113 @@
+# Let's add CI/CD
+
+## Pipeline output 
+
+![shinyValidator on GitLab CI](assets/images/png/gitlab-pipeline.png)
+
+
+## {shinyValidator} CI/CD file
+
+::: {.panel-tabset}
+
+### Control branches
+
+In case you need to control branches triggering `{shinyValidator}`:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```yaml
+on:
+  push:
+    branches: [main, master, <CUSTOM_BRANCH>]
+  pull_request:
+    branches: [main, master, <CUSTOM_BRANCH>]
+
+name: shinyValidator
+```
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+%%{init: {'theme':'dark'}}%%
+gitGraph
+  commit
+  commit
+  branch develop
+  checkout develop
+  commit
+  commit
+  checkout main
+  merge develop
+  commit
+  commit id: "Normal" tag: "v1.0.0"
+```
+:::
+
+::::
+
+### Control strategy 
+
+If you have to change the R version, os, ...:
+
+```yaml
+strategy:
+  fail-fast: false
+  matrix:
+    config:
+      - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+      - {os: ubuntu-latest,   r: 'release'}
+      - {os: ubuntu-latest,   r: 'oldrel-1'}
+```
+
+
+### Steps
+
+```yaml
+- name: Lint code
+  shell: Rscript {0}
+  run: shinyValidator::lint_code()
+
+- name: Audit app 🏥
+  shell: Rscript {0}
+  run: shinyValidator::audit_app()
+
+- name: Deploy to GitHub pages 🚀
+  if: github.event_name != 'pull_request'
+  uses: JamesIves/github-pages-deploy-action@4.1.4
+  with:
+    clean: false
+    branch: gh-pages
+    folder: public
+```
+
+:::
+
+## Example: disable other checks
+
+Modify GitHub actions yaml file:
+
+```yaml
+- name: Audit app 🏥
+  shell: Rscript {0}
+  run: shinyValidator::audit_app(load_testing = FALSE, profile_code = FALSE, check_reactivity = FALSE)
+```
+
+## Link to GitHub
+
+Create a remote repository on GitHub and add it to the current project:
+
+```{r}
+#| eval: false
+#| echo: true
+usethis::use_github() # make sure to have a valid GITHUB_PAT
+# ...
+```
+
+## Run our first pipeline
+
+1. Make sure GitHub [Pages](https://github.com/DivadNojnarg/RtmpXU8dBM/settings/pages) is enabled.
+2. Commit and push the code to GitHub.
+3. You can follow the GitHub actions logs.
+4. When done, open the report an discuss results.
+5. Time to add some real things!
