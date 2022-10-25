@@ -2,12 +2,12 @@
 
 ## {golem} {auto-animate=true}
 
-We create an empty `{golem}` project:
+We create an empty `{golem}` project^[You'll replace `<PKG>` by whatever suitable.]:
 
 ```{r}
 #| eval: false
 #| echo: true
-path <- file.path("<FOLDER>", "mypkg") 
+path <- file.path("<FOLDER>", "<PKG>") 
 golem::create_golem(path)
 # ...
 ```
@@ -20,12 +20,27 @@ We add some useful files, basic test and
 ```{r}
 #| eval: false
 #| echo: true
-path <- file.path("<FOLDER>", "mypkg") 
+path <- file.path("<FOLDER>", "<PKG>") 
 golem::create_golem(path)
 usethis::use_mit_license() # or whatever license
 usethis::use_testthat()
 usethis::use_test("dummy")
 usethis::use_git()
+```
+
+## Create empty GitHub repo
+
+Browse to [GitHub](https://github.com/) and create an empty repository called `<PKG>` matching the previously created package. 
+
+## Add remote repo to local
+
+![Link to copy from GitHub](assets/images/png/init-github.png)
+
+Go to terminal tab under RStudio:
+
+```shell
+git remote add origin <LINK COPIED FROM GITHUB>
+git remote -v 
 ```
 
 ## {renv} {auto-animate=true}

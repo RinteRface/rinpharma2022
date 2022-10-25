@@ -33,6 +33,8 @@ If you want to run `{shinyValidator}` locally (not on CI/CD), you must have:
 - `shinycannon` installed for the load-test part. See [here](https://rstudio.github.io/shinyloadtest/articles/shinycannon.html).
 - A chrome browser installed like [chromium](https://www.chromium.org/getting-involved/download-chromium/). 
 
+- `git` installed and a [GitHub](https://github.com/) account.
+
 ```{r}
 dracula_card(
   borderColor = "red",
