@@ -1,5 +1,9 @@
 # What's next?
 
+## Test with your own app
+
+Get a top notch app? Try to setup `{shinyValidator}` and run it.
+
 ## Be patient
 
 CI/CD and testing are not easy!
@@ -24,3 +28,6 @@ dracula_card(
 ## Mastering Shiny UI
 
 ![Mastering Shiny UI book cover](assets/images/jpeg/outstanding-shiny.jpg)
+
+## Thank you!
+

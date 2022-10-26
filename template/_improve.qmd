@@ -5,7 +5,7 @@
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: "2-7"
+#| code-line-numbers: "2-5"
 shinyValidator::audit_app(
   load_testing = FALSE, 
   coverage = FALSE, 
@@ -105,9 +105,6 @@ dracula_card(
 )
 ```
 
-## Time to commit and push
-
-
 ## Customize Crash test
 
 Leverage `{shinytest2}` power^[See: https://rstudio.github.io/shinytest2/articles/in-depth.html], `app` being the Shiny app to audit. 
@@ -115,7 +112,7 @@ Leverage `{shinytest2}` power^[See: https://rstudio.github.io/shinytest2/article
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: "2-7"
+#| code-line-numbers: "2-5"
 shinyValidator::audit_app(
   {
     app$set_inputs(obs = 1000)
@@ -156,7 +153,7 @@ Enable output check in `audit_app.R`:
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: "2-7"
+#| code-line-numbers: "6"
 shinyValidator::audit_app(
   load_testing = FALSE, 
   coverage = FALSE, 
@@ -236,6 +233,8 @@ Failure may be reviewed with:
 #| echo: true
 testthat::snapshot_review('basic-plot')
 ```
+
+Run `audit_app`
 :::
 
 :::{.column width="50%"}

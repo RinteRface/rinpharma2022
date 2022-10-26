@@ -233,6 +233,8 @@ audit_app({
 
 ::::
 
+This code is run during crash test, profiling and reactivity check.
+
 ## About monkey testing
 
 `run_crash_test()` runs a `gremlins.js` [test](https://marmelab.com/gremlins.js/) if no 
