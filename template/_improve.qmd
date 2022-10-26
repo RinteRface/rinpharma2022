@@ -10,8 +10,7 @@ shinyValidator::audit_app(
   load_testing = FALSE, 
   coverage = FALSE, 
   profile_code = FALSE, 
-  check_reactivity = FALSE, 
-  debug = TRUE
+  check_reactivity = FALSE
 )
 ```
 
@@ -125,8 +124,7 @@ shinyValidator::audit_app(
   load_testing = FALSE, 
   coverage = FALSE, 
   profile_code = FALSE, 
-  check_reactivity = FALSE, 
-  debug = TRUE, 
+  check_reactivity = FALSE
 )
 ```
 
@@ -164,8 +162,7 @@ shinyValidator::audit_app(
   coverage = FALSE, 
   profile_code = FALSE, 
   check_reactivity = FALSE, 
-  output_validation = TRUE,
-  debug = TRUE
+  output_validation = TRUE
 )
 ```
 
@@ -294,8 +291,7 @@ shinyValidator::audit_app(
   load_testing = FALSE, 
   coverage = FALSE, 
   profile_code = TRUE, 
-  check_reactivity = FALSE, 
-  debug = TRUE, 
+  check_reactivity = FALSE
 )
 ```
 

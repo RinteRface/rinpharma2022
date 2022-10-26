@@ -1,0 +1,26 @@
+# What's next?
+
+## Be patient
+
+CI/CD and testing are not easy!
+
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "Pro tip: always run the code locally first with `audit_app` until no error."
+  )
+)
+```
+
+## Recommended reading
+
+![Engineering Shiny book cover](assets/images/jpeg/engineering-shiny.jpg)
+
+## Mastering Shiny UI
+
+![Mastering Shiny UI book cover](assets/images/jpeg/outstanding-shiny.jpg)
