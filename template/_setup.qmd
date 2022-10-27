@@ -40,7 +40,8 @@ Go to terminal tab under RStudio:
 
 ```shell
 git remote add origin <LINK COPIED FROM GITHUB>
-git remote -v 
+git branch -M main
+git push -u origin main
 ```
 
 ## {renv} {auto-animate=true}
@@ -53,11 +54,25 @@ Initialize `{renv}` for R package dependencies:
 system("echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' >> .Renviron")
 ```
 
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "Restart R to consider .Renviron"
+  )
+)
+```
+
 ## {renv} {auto-animate=true}
 
 ```{r}
 #| eval: false
 #| echo: true
+#| code-line-numbers: "|4|6|8"
 system("echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' >> .Renviron")
 
 # SCAN the project and look for dependencies
@@ -67,6 +82,8 @@ renv::install("<PACKAGE>")
 # Capture new dependencies after package installation
 renv::snapshot()
 ```
+
+![Successful renv setup](assets/images/png/renv-init.png)
 
 ## Install {shinyValidator}
 
@@ -235,13 +252,34 @@ audit_app({
 
 This code is run during crash test, profiling and reactivity check.
 
-## About monkey testing
+## About monkey testing (1/2)
 
 `run_crash_test()` runs a `gremlins.js` [test](https://marmelab.com/gremlins.js/) if no 
 headless action are passed:
 
 <center>{{< video assets/video/monkey-test.mp4
-    title="Monkey testing for Shiny app" height= "400px" >}}</center>
+    title="Monkey testing for Shiny app" height= "400px" >}}
+</center>
+
+## About monkey testing (2/2)
+
+### Your turn 👩‍🔬
+:::: {.columns}
+
+::: {.column width="50%" .xsmall}
+1. Run `./app.R` in an external browser.
+2. Open the developer tools (ctrl + shift (Maj) + I for Windows, option + command + I on Mac).
+3. Browse to https://marmelab.com/gremlins.js/ and copy the Bookmarklet Code on the right.
+4. Copy this code into the Shiny app HTML inspector JS console.
+5. Enjoy that moment.
+:::
+
+::: {.column width="50%"}
+![Monkey testing instructions](assets/images/png/monkey-test.png)
+:::
+
+::::
+
 
 ## Report example
 

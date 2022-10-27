@@ -134,7 +134,6 @@ Not easy 😢
 - Add __version control__ (git knowledge).
 - Build custom GitLab runner (optional).
 - Write __CI/CD instructions__ (better support for GitHub).
-- Enjoy ...
 
 Can't we make things easier❓
 

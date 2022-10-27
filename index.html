@@ -534,7 +534,7 @@
 <ul>
 <li>Unit tests: test business logic.</li>
 <li>Server testing: test how Shiny modules or pieces work together (with reactivity).</li>
-<li>UI testing: test UI components, snapshots, headless-testing (<a href="https://github.com/rstudio/shinytest2">shinytest2</a>).</li>
+<li>UI testing: test UI components, snapshots, headless-testing (<a href="https://rstudio.github.io/shinytest2/">shinytest2</a>).</li>
 </ul>
 </div>
 <div id="tabset-1-4">
@@ -590,7 +590,6 @@
 <li>Add <strong>version control</strong> (git knowledge).</li>
 <li>Build custom GitLab runner (optional).</li>
 <li>Write <strong>CI/CD instructions</strong> (better support for GitHub).</li>
-<li>Enjoy …</li>
 </ul>
 <p>Can’t we make things easier❓</p>
 </div>
@@ -631,15 +630,25 @@
 
 <img data-src="assets/images/png/init-github.png" class="r-stretch quarto-figure-center"><p class="caption">Link to copy from GitHub</p><p>Go to terminal tab under RStudio:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>git remote add origin &lt;LINK COPIED FROM GITHUB&gt;</span>
-<span id="cb4-2"><a href="#cb4-2"></a>git remote -v </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a>git branch -M main</span>
+<span id="cb4-3"><a href="#cb4-3"></a>git push -u origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="renv" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">{renv}</h2>
 <p>Initialize <a href="https://rstudio.github.io/renv/">renv</a> for R package dependencies:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a href="#cb5-1"></a><span class="fu">system</span>(<span class="st">"echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' &gt;&gt; .Renviron"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div class="drac-box drac-card drac-bg-purple drac-p-md drac-m-md drac-rounded-full drac-h-auto drac-w-auto drac-scrollbar-purple drac-card-subtle drac-text-purple drac-border-red" variant="subtle">
+<span class="drac-text drac-text-red drac-line-height drac-text-left drac-text-bold drac-text-lg">Restart R to consider .Renviron</span>
+</div>
+</div>
+</div>
+</div>
 </section><section id="renv-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">{renv}</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb6-1" class="hljs-ln-code"><a href="#cb6-1"></a><span class="fu">system</span>(<span class="st">"echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' &gt;&gt; .Renviron"</span>)</span>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|4|6|8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb6-1" class="hljs-ln-code"><a href="#cb6-1"></a><span class="fu">system</span>(<span class="st">"echo 'RENV_PATHS_LIBRARY_ROOT = ~/.renv/library' &gt;&gt; .Renviron"</span>)</span>
 <span id="cb6-2" class="hljs-ln-code"><a href="#cb6-2"></a></span>
 <span id="cb6-3" class="hljs-ln-code"><a href="#cb6-3"></a><span class="co"># SCAN the project and look for dependencies</span></span>
 <span id="cb6-4" class="hljs-ln-code"><a href="#cb6-4"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
@@ -648,7 +657,8 @@
 <span id="cb6-7" class="hljs-ln-code"><a href="#cb6-7"></a><span class="co"># Capture new dependencies after package installation</span></span>
 <span id="cb6-8" class="hljs-ln-code"><a href="#cb6-8"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="install-shinyvalidator" class="slide level2"><h2>Install {shinyValidator}</h2>
+
+<img data-src="assets/images/png/renv-init.png" class="r-stretch quarto-figure-center"><p class="caption">Successful renv setup</p></section><section id="install-shinyvalidator" class="slide level2"><h2>Install {shinyValidator}</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Novartis/shinyValidator"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(shinyValidator)</span>
@@ -728,7 +738,7 @@ flowchart TD
 </div><div class="column" style="width:50%;">
 <ul>
 <li>
-<strong>headless actions</strong>: pass <a href="https://github.com/rstudio/shinytest2">shinytest2</a> instructions.</li>
+<strong>headless actions</strong>: pass <a href="https://rstudio.github.io/shinytest2/">shinytest2</a> instructions.</li>
 <li>
 <strong>timeout</strong>: wait app to start.</li>
 <li>
@@ -812,15 +822,34 @@ graph LR
 </div>
 </div>
 <p>This code is run during crash test, profiling and reactivity check.</p>
-</section><section id="about-monkey-testing" class="slide level2"><h2>About monkey testing</h2>
+</section><section id="about-monkey-testing-12" class="slide level2"><h2>About monkey testing (1/2)</h2>
 <p><code>run_crash_test()</code> runs a <code>gremlins.js</code> <a href="https://marmelab.com/gremlins.js/">test</a> if no headless action are passed:</p>
 <center>
 <video id="video_shortcode_videojs_video1" height="400px" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title="Monkey testing for Shiny app"><source src="assets/video/monkey-test.mp4"></video>
 </center>
+</section><section id="about-monkey-testing-22" class="slide level2"><h2>About monkey testing (2/2)</h2>
+<h3 id="your-turn">Your turn 👩‍🔬</h3>
+<div class="columns">
+<div class="column xsmall" style="width:50%;">
+<ol type="1">
+<li>Run <code>./app.R</code> in an external browser.</li>
+<li>Open the developer tools (ctrl + shift (Maj) + I for Windows, option + command + I on Mac).</li>
+<li>Browse to https://marmelab.com/gremlins.js/ and copy the Bookmarklet Code on the right.</li>
+<li>Copy this code into the Shiny app HTML inspector JS console.</li>
+<li>Enjoy that moment.</li>
+</ol>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="assets/images/png/monkey-test.png"></p>
+<p></p><figcaption>Monkey testing instructions</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 </section><section id="report-example" class="slide level2"><h2>Report example</h2>
 <iframe src="./assets/shinyvalidator-report/index.html" title="shinyValidator html report" width="100%" height="100%">
 </iframe>
-</section><section id="your-turn" class="slide level2"><h2>Your turn</h2>
+</section><section id="your-turn-1" class="slide level2"><h2>Your turn</h2>
 <ol type="1">
 <li>Call <code>run_audit(scope = "POC")</code>.</li>
 <li>Look at the logs messages.</li>
@@ -900,7 +929,7 @@ graph LR
 </div>
 </div>
 </section><section id="customize-crash-test" class="slide level2"><h2>Customize Crash test</h2>
-<p>Leverage <a href="https://github.com/rstudio/shinytest2">shinytest2</a> power<sup>1</sup>, <code>app</code> being the Shiny app to audit.</p>
+<p>Leverage <a href="https://rstudio.github.io/shinytest2/">shinytest2</a> power<sup>1</sup>, <code>app</code> being the Shiny app to audit.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>shinyValidator<span class="sc">::</span><span class="fu">audit_app</span>(</span>
 <span id="cb17-2"><a href="#cb17-2"></a>  {</span>
