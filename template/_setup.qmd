@@ -1,4 +1,4 @@
-# Setup {shinyValidator}
+# Setup {shinyValidator} {.vertical-center}
 
 ## {golem} {auto-animate=true}
 

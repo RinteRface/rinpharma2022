@@ -1,4 +1,15 @@
-# Welcome
+# Welcome {.vertical-center}
+
+## Hi, I am David Granjon
+
+Senior Software developer at Novartis.
+
+```{r}
+tagAppendAttributes(
+  dracula_avatar("assets/images/jpeg/david.jpeg"),
+  style = "height: 5.4em; width: 5.5em;"
+)
+```
 
 We're in for 2 hours of **fun**!
 

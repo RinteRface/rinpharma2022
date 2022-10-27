@@ -1,4 +1,4 @@
-# What's next?
+# What's next? {.vertical-center}
 
 ## Test with your own app
 
@@ -29,5 +29,5 @@ dracula_card(
 
 ![Mastering Shiny UI book cover](assets/images/jpeg/outstanding-shiny.jpg)
 
-## Thank you!
+## Thank you! {.vertical-center}
 

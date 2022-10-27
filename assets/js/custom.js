@@ -12,8 +12,9 @@ $(function() {
     .addClass('drac-tab drac-tab-active');
   
   $('.drac-tab-link').on('click', function() {
-    $('.drac-tab-link')
+    $(this)
       .parent('li')
+      .siblings()
       .removeClass('drac-tab-active');
     $(this).parent('li').toggleClass('drac-tab-active');
   });
