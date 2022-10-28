@@ -8,7 +8,6 @@ format:
     theme: "assets/styles/dracula.scss"
     code-link: true
     code-copy: true
-    footer: "Novartis, 2022"
     navigation-mode: vertical
     controls-layout: bottom-right
     controls-tutorial: true
