@@ -121,7 +121,7 @@ dracula_card(
 )
 ```
 
-Run `./app_audit.R` and have a look at the coverage tab.
+Run `shinyValidator::audit_app` and have a look at the coverage tab.
 
 ## Customize Crash test
 
@@ -147,7 +147,7 @@ shinyValidator::audit_app(
 - Control inputs with `$set_inputs()`. 
 - Take screenshot with `$get_screenshot()`.
 
-Run `./app_audit.R` and have a look at the screenshots
+Run `shinyValidator::audit_app` and have a look at the screenshots.
 
 ## Output checks (1/3)
 
@@ -272,7 +272,7 @@ devtools::test()
 testthat::snapshot_review('basic-plot')
 ```
 
-4. Run `./app_audit.R` script and look at the outputs tab.
+4. Run `shinyValidator::audit_app` and look at the outputs tab.
 :::
 
 :::{.column width="50%"}
@@ -347,7 +347,7 @@ shinyValidator::audit_app(
 )
 ```
 
-Run `./app_audit.R` and have a look at the profiling tab.
+Run `shinyValidator::audit_app` and have a look at the profiling tab.
 
 ## Performance: Code profiling (3/3)
 

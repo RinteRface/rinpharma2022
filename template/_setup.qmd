@@ -287,9 +287,8 @@ title="shinyValidator html report" width="100%" height="100%">
 
 ## Your turn 🎮
 
-1. Create a new script `./app_audit.R`.
-2. Write and call `audit_app(scope = "POC")`.
-3. Look at the logs messages.
-4. When done open `public/index.html` (external browser).
-5. Explore the report. 
-6. Modify app code and rerun ...
+1. From the R console, call `shinyValidator::audit_app(scope = "POC")`.
+2. Look at the logs messages.
+3. When done open `public/index.html` (external browser).
+4. Explore the report. 
+5. Modify app code and rerun ...
