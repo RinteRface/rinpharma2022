@@ -416,13 +416,16 @@
 <li>Ask questions ❓</li>
 </ul></section><section id="program" class="slide level2"><h2>Program</h2>
 <ol type="1">
-<li>Introduction <strong>5 min</strong>
+<li>Introduction <strong>10 min</strong>
 </li>
-<li>Setup {shinyValidator} <strong>45 min</strong>
+<li>Setup {shinyValidator} <strong>20 min</strong>
 </li>
-<li>Analyse {shinyValidator} report <strong>45 min</strong>
+<li>Discover {shinyValidator} <strong>30 min</strong>
 </li>
-<li>Questions</li>
+<li>Customize {shinyValidator} <strong>40 min</strong>
+</li>
+<li>Add CI/CD (if time allows)</li>
+<li>Q&amp;A</li>
 </ol></section><section id="workshop-material" class="slide level2"><h2>Workshop Material</h2>
 <ul>
 <li>Slides: <a href="https://rinpharma2022.rinterface.com">https://rinpharma2022.rinterface.com/</a>
@@ -516,21 +519,21 @@
 </ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<p><img src="assets/images/svg/golem.svg" width="10%" style="display: block; margin: auto;" class="svg-img"></p>
+<p><img src="assets/images/svg/golem.svg" width="10%" style="display: block; margin: auto;" class="svg-img" alt="Hex logo of golem package."></p>
 <ul>
 <li>Easier checking, linting, documentation and testing.</li>
 <li>Just … <strong>easier</strong>. 😀</li>
 </ul>
 </div>
 <div id="tabset-1-2">
-<p><img src="assets/images/svg/renv.svg" width="10%" style="display: block; margin: auto;" class="svg-img"></p>
+<p><img src="assets/images/svg/renv.svg" width="10%" style="display: block; margin: auto;" class="svg-img" alt="Hex logo of renv package."></p>
 <ul>
 <li>Fix package versions.</li>
 <li>Increased <strong>reproducibility</strong>.</li>
 </ul>
 </div>
 <div id="tabset-1-3">
-<p><img src="assets/images/svg/testthat.svg" width="10%" style="display: block; margin: auto;" class="svg-img"></p>
+<p><img src="assets/images/svg/testthat.svg" width="10%" style="display: block; margin: auto;" class="svg-img" alt="Hex logo of testthat package"></p>
 <ul>
 <li>Unit tests: test business logic.</li>
 <li>Server testing: test how Shiny modules or pieces work together (with reactivity).</li>
@@ -597,7 +600,7 @@
 </div>
 </section><section id="stop-i-am-lost" class="slide level2"><h2>Stop … I am lost …</h2>
 
-<img src="assets/images/svg/sad.svg" width="40%" style="display: block; margin: auto;" class="svg-img r-stretch"><ul>
+<img src="assets/images/svg/sad.svg" width="40%" style="display: block; margin: auto;" class="svg-img r-stretch" alt="Sad background image."><ul>
 <li>There are just so many tools! How to use them properly?</li>
 <li>Is there a way to <strong>automate</strong> all of this? I just don’t have time … 😞</li>
 </ul></section><section id="welcome-shinyvalidator" class="slide level2"><h2>Welcome {shinyValidator}</h2>
@@ -628,7 +631,7 @@
 <p>Browse to <a href="https://github.com/">GitHub</a> and create an empty repository called <code>&lt;PKG&gt;</code> matching the previously created package.</p>
 </section><section id="add-remote-repo-to-local" class="slide level2"><h2>Add remote repo to local</h2>
 
-<img data-src="assets/images/png/init-github.png" class="r-stretch quarto-figure-center"><p class="caption">Link to copy from GitHub</p><p>Go to terminal tab under RStudio:</p>
+<img data-src="assets/images/png/init-github.png" alt="How to init a GitHub repository." class="r-stretch"><p>Go to terminal tab under RStudio:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>git remote add origin &lt;LINK COPIED FROM GITHUB&gt;</span>
 <span id="cb4-2"><a href="#cb4-2"></a>git branch -M main</span>
 <span id="cb4-3"><a href="#cb4-3"></a>git push -u origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -658,7 +661,7 @@
 <span id="cb6-8" class="hljs-ln-code"><a href="#cb6-8"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="assets/images/png/renv-init.png" class="r-stretch quarto-figure-center"><p class="caption">Successful renv setup</p></section><section id="install-shinyvalidator" class="slide level2"><h2>Install {shinyValidator}</h2>
+<img data-src="assets/images/png/renv-init.png" alt="Code output showing successful renv setup." class="r-stretch"></section><section id="install-shinyvalidator" class="slide level2"><h2>Install {shinyValidator}</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Novartis/shinyValidator"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(shinyValidator)</span>
@@ -815,7 +818,7 @@ graph LR
 <span id="cb11-6"><a href="#cb11-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img src="assets/images/svg/shinytest2.svg" width="20%" style="display: block; margin: auto;" class="svg-img"></p>
+<p><img src="assets/images/svg/shinytest2.svg" width="20%" style="display: block; margin: auto;" class="svg-img" alt="shinytest2 hex logo."></p>
 </div>
 </div>
 <p>This code is run during crash test, profiling and reactivity check.</p>
@@ -836,11 +839,7 @@ graph LR
 <li>Enjoy that moment.</li>
 </ol>
 </div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="assets/images/png/monkey-test.png"></p>
-<p></p><figcaption>Monkey testing instructions</figcaption><p></p>
-</figure>
-</div>
+<p><img data-src="assets/images/png/monkey-test.png" alt="Monkey test screnshot."></p>
 </div>
 </div>
 </section><section id="report-example" class="slide level2"><h2>Report example</h2>
@@ -1097,7 +1096,7 @@ graph LR
 
 </section><section id="pipeline-output" class="slide level2"><h2>Pipeline output</h2>
 
-<img data-src="assets/images/png/gitlab-pipeline.png" class="r-stretch quarto-figure-center"><p class="caption">shinyValidator on GitLab CI</p></section><section id="shinyvalidator-cicd-file" class="slide level2"><h2>{shinyValidator} CI/CD file</h2>
+<img data-src="assets/images/png/gitlab-pipeline.png" alt="shinyValidator pipeline on GitLab CI." class="r-stretch"></section><section id="shinyvalidator-cicd-file" class="slide level2"><h2>{shinyValidator} CI/CD file</h2>
 <div class="panel-tabset">
 <ul id="tabset-3" class="panel-tabset-tabby">
 <li><a data-tabby-default="" href="#tabset-3-1">Control branches</a></li>
@@ -1203,9 +1202,9 @@ gitGraph
 </div>
 </section><section id="recommended-reading" class="slide level2"><h2>Recommended reading</h2>
 
-<img data-src="assets/images/jpeg/engineering-shiny.jpg" class="r-stretch quarto-figure-center"><p class="caption">Engineering Shiny book cover</p></section><section id="mastering-shiny-ui" class="slide level2"><h2>Mastering Shiny UI</h2>
+<img data-src="assets/images/jpeg/engineering-shiny.jpg" alt="Engineering Shiny book cover." class="r-stretch"></section><section id="mastering-shiny-ui" class="slide level2"><h2>Mastering Shiny UI</h2>
 
-<img data-src="assets/images/jpeg/outstanding-shiny.jpg" class="r-stretch quarto-figure-center"><p class="caption">Mastering Shiny UI book cover</p></section><section id="thank-you" class="slide level2 vertical-center"><h2>Thank you!</h2>
+<img data-src="assets/images/jpeg/outstanding-shiny.jpg" alt="Outstanding User Interfaces with Shiny book cover." class="r-stretch"></section><section id="thank-you" class="slide level2 vertical-center"><h2>Thank you!</h2>
 <div class="footer footer-default">
 <p>Novartis, 2022</p>
 </div>

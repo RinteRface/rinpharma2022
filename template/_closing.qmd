@@ -23,11 +23,11 @@ dracula_card(
 
 ## Recommended reading
 
-![Engineering Shiny book cover](assets/images/jpeg/engineering-shiny.jpg)
+![](assets/images/jpeg/engineering-shiny.jpg){fig-alt="Engineering Shiny book cover."}
 
 ## Mastering Shiny UI
 
-![Mastering Shiny UI book cover](assets/images/jpeg/outstanding-shiny.jpg)
+![](assets/images/jpeg/outstanding-shiny.jpg){fig-alt="Outstanding User Interfaces with Shiny book cover."}
 
 ## Thank you! {.vertical-center}
 

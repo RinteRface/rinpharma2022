@@ -34,7 +34,7 @@ Browse to [GitHub](https://github.com/) and create an empty repository called `<
 
 ## Add remote repo to local
 
-![Link to copy from GitHub](assets/images/png/init-github.png)
+![](assets/images/png/init-github.png){fig-alt="How to init a GitHub repository."}
 
 Go to terminal tab under RStudio:
 
@@ -83,7 +83,7 @@ renv::install("<PACKAGE>")
 renv::snapshot()
 ```
 
-![Successful renv setup](assets/images/png/renv-init.png)
+![](assets/images/png/renv-init.png){fig-alt="Code output showing successful renv setup."}
 
 ## Install {shinyValidator}
 
@@ -243,7 +243,7 @@ audit_app({
 :::
 
 ::: {.column width="50%"}
-<img src="assets/images/svg/shinytest2.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+<img src="assets/images/svg/shinytest2.svg" width="20%" style="display: block; margin: auto;" class="svg-img" alt="shinytest2 hex logo."/>
 :::
 
 ::::
@@ -273,7 +273,7 @@ headless action are passed:
 :::
 
 ::: {.column width="50%"}
-![Monkey testing instructions](assets/images/png/monkey-test.png)
+![](assets/images/png/monkey-test.png){fig-alt="Monkey test screnshot."}
 :::
 
 ::::

@@ -2,7 +2,7 @@
 
 ## Pipeline output 
 
-![shinyValidator on GitLab CI](assets/images/png/gitlab-pipeline.png)
+![](assets/images/png/gitlab-pipeline.png){fig-alt="shinyValidator pipeline on GitLab CI."}
 
 
 ## {shinyValidator} CI/CD file

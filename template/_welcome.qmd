@@ -19,10 +19,12 @@ We're in for 2 hours of **fun**!
 
 ## Program
 
-1. Introduction 				__5  min__
-2. Setup {shinyValidator} __45 min__
-3. Analyse {shinyValidator} report __45 min__
-4. Questions
+1. Introduction __10  min__
+2. Setup {shinyValidator} __20 min__
+3. Discover {shinyValidator} __30 min__
+4. Customize {shinyValidator} __40 min__
+5. Add CI/CD (if time allows)
+6. Q&A
 
 ## Workshop Material
 

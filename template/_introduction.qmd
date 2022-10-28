@@ -79,21 +79,21 @@ In practice, a few apps meet all these requirements 😈.
 
 ### Structure your app
 
-<img src="assets/images/svg/golem.svg" width="10%" style="display: block; margin: auto;" class="svg-img"/>
+<img src="assets/images/svg/golem.svg" width="10%" style="display: block; margin: auto;" class="svg-img" alt="Hex logo of golem package."/>
 
 - Easier checking, linting, documentation and testing.
 - Just ... __easier__. 😀
 
 ### __dependencies__
 
-<img src="assets/images/svg/renv.svg" width="10%" style="display: block; margin: auto;" class="svg-img"/>
+<img src="assets/images/svg/renv.svg" width="10%" style="display: block; margin: auto;" class="svg-img" alt="Hex logo of renv package."/>
 
 - Fix package versions.
 - Increased __reproducibility__.
 
 ### __Test__ code
 
-<img src="assets/images/svg/testthat.svg" width="10%" style="display: block; margin: auto;" class="svg-img"/>
+<img src="assets/images/svg/testthat.svg" width="10%" style="display: block; margin: auto;" class="svg-img" alt="Hex logo of testthat package"/>
 
 - Unit tests: test business logic. 
 - Server testing: test how Shiny modules or pieces work together (with reactivity).
@@ -141,7 +141,7 @@ Can't we make things easier❓
 
 ## Stop ... I am lost ...
 
-<img src="assets/images/svg/sad.svg" width="40%" style="display: block; margin: auto;" class="svg-img"/>
+<img src="assets/images/svg/sad.svg" width="40%" style="display: block; margin: auto;" class="svg-img" alt="Sad background image."/>
 
 - There are just so many tools! How to use them properly?
 - Is there a way to __automate__ all of this? I just don't have time ... 😞
