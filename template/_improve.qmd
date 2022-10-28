@@ -4,7 +4,7 @@ Your turn 🎮
 
 ## Disable other checks
 
-Modify the script created in `./app_audit.R`.
+Modify `shinyValidator::audit_app` parameters:
 
 ```{r}
 #| eval: false
