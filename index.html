@@ -396,7 +396,7 @@
 <section id="title-slide" class="center"><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><script src="./assets/js/custom.js"></script><h1 class="title drac-heading drac-heading-xl drac-text-white">
     An introduction to <span class="drac-badge drac-bg-purple-cyan drac-text-black">{shinyValidator}</span>
   </h1>
-  <br><p class="subtitle">2022-10-27</p>
+  <br><p class="subtitle">2022-10-28</p>
   <p class="author">David Granjon, Novartis</p>
 </section><section><section id="welcome" class="title-slide slide level1 vertical-center center"><h1>Welcome</h1>
 
@@ -667,6 +667,7 @@
 <span id="cb7-5"><a href="#cb7-5"></a>devtools<span class="sc">::</span><span class="fu">document</span>() <span class="co"># update help</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Review the file structure</p>
 </section></section><section><section id="shinyvalidator-step-by-step" class="title-slide slide level1 center"><h1>{shinyValidator}: step by step</h1>
 
 </section><section id="overall-concept" class="slide level2"><h2>Overall concept</h2>
@@ -720,20 +721,16 @@ flowchart TD
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>audit_app <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="at">headless_actions =</span> <span class="cn">NULL</span>,</span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="at">timeout =</span> <span class="cn">NULL</span>,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="at">workers =</span> <span class="dv">5</span>,</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="at">scope =</span> <span class="fu">c</span>(<span class="st">"manual"</span>, <span class="st">"DMC"</span>, <span class="st">"POC"</span>),</span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="at">output_validation =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="at">coverage =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-8"><a href="#cb8-8"></a>  <span class="at">load_testing =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-9"><a href="#cb8-9"></a>  <span class="at">profile_code =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-10"><a href="#cb8-10"></a>  <span class="at">check_reactivity =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-11"><a href="#cb8-11"></a>  <span class="at">flow =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-12"><a href="#cb8-12"></a>  <span class="at">debug =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-13"><a href="#cb8-13"></a>  <span class="at">port =</span> httpuv<span class="sc">::</span><span class="fu">randomPort</span>(),</span>
-<span id="cb8-14"><a href="#cb8-14"></a>  ...</span>
-<span id="cb8-15"><a href="#cb8-15"></a>) {</span>
-<span id="cb8-16"><a href="#cb8-16"></a>  <span class="do">###</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="at">scope =</span> <span class="fu">c</span>(<span class="st">"manual"</span>, <span class="st">"DMC"</span>, <span class="st">"POC"</span>),</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="at">output_validation =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="at">coverage =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="at">load_testing =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="at">profile_code =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="at">check_reactivity =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>  ...</span>
+<span id="cb8-11"><a href="#cb8-11"></a>) {</span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="do">###</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <ul>
@@ -849,23 +846,24 @@ graph LR
 </section><section id="report-example" class="slide level2"><h2>Report example</h2>
 <iframe src="./assets/shinyvalidator-report/index.html" title="shinyValidator html report" width="100%" height="100%">
 </iframe>
-</section><section id="your-turn-1" class="slide level2"><h2>Your turn</h2>
+</section><section id="your-turn-1" class="slide level2"><h2>Your turn 🎮</h2>
 <ol type="1">
-<li>Call <code>run_audit(scope = "POC")</code>.</li>
+<li>Create a new script <code>./app_audit.R</code>.</li>
+<li>Write and call <code>run_audit(scope = "POC")</code>.</li>
 <li>Look at the logs messages.</li>
 <li>When done open <code>public/index.html</code> (external browser).</li>
 <li>Explore the report.</li>
 <li>Modify app code and rerun …</li>
 </ol></section></section><section><section id="improve" class="title-slide slide level1 vertical-center center"><h1>Improve</h1>
-
+<p>Your turn 🎮</p>
 </section><section id="disable-other-checks" class="slide level2"><h2>Disable other checks</h2>
+<p>Modify the script created in <code>./app_audit.R</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>shinyValidator<span class="sc">::</span><span class="fu">audit_app</span>(</span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="at">load_testing =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">coverage =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">profile_code =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">profile_code =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -903,6 +901,15 @@ graph LR
 </div>
 </section><section id="add-server-testing" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Add server testing</h2>
 <div class="cell">
+<div class="cell-output-display">
+<div>
+<div class="drac-box drac-card drac-bg-purple drac-p-md drac-m-md drac-rounded-full drac-h-auto drac-w-auto drac-scrollbar-purple drac-card-subtle drac-text-purple drac-border-green" variant="subtle">
+<span class="drac-text drac-text-green drac-line-height drac-text-left drac-text-bold drac-text-lg">Goal: test reactivity and how pieces work together ...</span>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href="#cb15-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">"app-server-test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="add-server-testing-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Add server testing</h2>
@@ -928,8 +935,10 @@ graph LR
 </div>
 </div>
 </div>
+<p>Run <code>./app_audit.R</code> and have a look at the coverage tab.</p>
 </section><section id="customize-crash-test" class="slide level2"><h2>Customize Crash test</h2>
 <p>Leverage <a href="https://rstudio.github.io/shinytest2/">shinytest2</a> power<sup>1</sup>, <code>app</code> being the Shiny app to audit.</p>
+<div class="small">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>shinyValidator<span class="sc">::</span><span class="fu">audit_app</span>(</span>
 <span id="cb17-2"><a href="#cb17-2"></a>  {</span>
@@ -937,12 +946,27 @@ graph LR
 <span id="cb17-4"><a href="#cb17-4"></a>    app<span class="sc">$</span><span class="fu">get_screenshot</span>(<span class="st">"plop.png"</span>)</span>
 <span id="cb17-5"><a href="#cb17-5"></a>  },</span>
 <span id="cb17-6"><a href="#cb17-6"></a>  <span class="at">load_testing =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb17-7"><a href="#cb17-7"></a>  <span class="at">coverage =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb17-8"><a href="#cb17-8"></a>  <span class="at">profile_code =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb17-9"><a href="#cb17-9"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="at">profile_code =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+<ul>
+<li>Control inputs with <code>$set_inputs()</code>.</li>
+<li>Take screenshot with <code>$get_screenshot()</code>.</li>
+</ul>
+<p>Run <code>./app_audit.R</code> and have a look at the screenshots</p>
 <aside><ol class="aside-footnotes"><li id="fn3"><p>See: https://rstudio.github.io/shinytest2/articles/in-depth.html</p></li></ol></aside></section><section id="output-checks-13" class="slide level2"><h2>Output checks (1/3)</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div class="drac-box drac-card drac-bg-purple drac-p-md drac-m-md drac-rounded-full drac-h-auto drac-w-auto drac-scrollbar-purple drac-card-subtle drac-text-purple drac-border-green" variant="subtle">
+<span class="drac-text drac-text-green drac-line-height drac-text-left drac-text-bold drac-text-lg">Goal: track if an output has changed after a commit...</span>
+</div>
+</div>
+</div>
+</div>
+<div class="xsmall">
 <p>Create this function in <code>helpers.R</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>make_hist <span class="ot">&lt;-</span> <span class="cf">function</span>(val) {</span>
@@ -955,15 +979,15 @@ graph LR
 <span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">make_hist</span>(input<span class="sc">$</span>obs)</span>
 <span id="cb19-3"><a href="#cb19-3"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Enable output check in <code>audit_app.R</code>:</p>
+<p>Enable output check in <code>./app_audit.R</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>shinyValidator<span class="sc">::</span><span class="fu">audit_app</span>(</span>
 <span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">load_testing =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">coverage =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">profile_code =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">output_validation =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">profile_code =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="at">output_validation =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section><section id="output-checks-23" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Output checks (2/3)</h2>
 <p>Create a new test:</p>
@@ -992,29 +1016,47 @@ graph LR
 </div>
 </div>
 </section><section id="output-checks-33" class="slide level2"><h2>Output checks (3/3)</h2>
-<div class="columns">
+<div class="columns small">
 <div class="column" style="width:50%;">
-<p>We slightly modify <code>make_hist()</code>:</p>
+<ol type="1">
+<li>We slightly modify <code>make_hist()</code>:</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>make_hist <span class="ot">&lt;-</span> <span class="cf">function</span>(val) {</span>
 <span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">hist</span>(<span class="fu">rnorm</span>(val <span class="sc">*</span> <span class="dv">2</span>))</span>
 <span id="cb23-3"><a href="#cb23-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>And run the test again:</p>
+<ol start="2" type="1">
+<li>Run the test again:</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Failure may be reviewed with:</p>
+<ol start="3" type="1">
+<li>Failure may be reviewed with:</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>testthat<span class="sc">::</span><span class="fu">snapshot_review</span>(<span class="st">'basic-plot'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Run <code>audit_app</code></p>
+<ol start="4" type="1">
+<li>Run <code>./app_audit.R</code> script and look at the outputs tab.</li>
+</ol>
 </div><div class="column" style="width:50%;">
 <iframe src="./assets/output-validation-example/ggplot-validation.html" title="Output validation widget with {diffviewer}" width="100%" height="550px" style="margin-left: 30px">
 </iframe>
 </div>
 </div>
 </section><section id="performance-code-profiling-12" class="slide level2"><h2>Performance: Code profiling (1/2)</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div class="drac-box drac-card drac-bg-purple drac-p-md drac-m-md drac-rounded-full drac-h-auto drac-w-auto drac-scrollbar-purple drac-card-subtle drac-text-purple drac-border-green" variant="subtle">
+<span class="drac-text drac-text-green drac-line-height drac-text-left drac-text-bold drac-text-lg">Goal: track any performance bottleneck.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="xsmall">
 <p>Add this function to <code>helpers.R</code><sup>1</sup>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>slow_func <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
@@ -1033,8 +1075,9 @@ graph LR
 <span id="cb27-5"><a href="#cb27-5"></a>  })</span>
 <span id="cb27-6"><a href="#cb27-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
 <aside><ol class="aside-footnotes"><li id="fn4"><p>Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html</p></li></ol></aside></section><section id="performance-code-profiling-23" class="slide level2"><h2>Performance: Code profiling (2/3)</h2>
-<p>We have to modify the custom headless script by adding a <strong>timeout</strong>:</p>
+<p>Modify the custom headless script by adding a <strong>timeout</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28" data-code-line-numbers="3,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>shinyValidator<span class="sc">::</span><span class="fu">audit_app</span>(</span>
 <span id="cb28-2"><a href="#cb28-2"></a>  {</span>
@@ -1043,12 +1086,11 @@ graph LR
 <span id="cb28-5"><a href="#cb28-5"></a>  },</span>
 <span id="cb28-6"><a href="#cb28-6"></a>  <span class="at">timeout =</span> <span class="dv">15</span>,</span>
 <span id="cb28-7"><a href="#cb28-7"></a>  <span class="at">load_testing =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb28-8"><a href="#cb28-8"></a>  <span class="at">coverage =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb28-9"><a href="#cb28-9"></a>  <span class="at">profile_code =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb28-10"><a href="#cb28-10"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span></span>
-<span id="cb28-11"><a href="#cb28-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-8"><a href="#cb28-8"></a>  <span class="at">profile_code =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="at">check_reactivity =</span> <span class="cn">FALSE</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Run the pipeline, wait and review the report.</p>
+<p>Run <code>./app_audit.R</code> and have a look at the profiling tab.</p>
 </section><section id="performance-code-profiling-33" class="slide level2"><h2>Performance: Code profiling (3/3)</h2>
 <iframe src="./assets/code-profile-example/code-profile.html" title="Output validation widget with {diffviewer}" width="100%" height="550px" style="margin-left: 30px">
 </iframe></section></section><section><section id="lets-add-cicd" class="title-slide slide level1 vertical-center center"><h1>Let’s add CI/CD</h1>
@@ -1137,12 +1179,6 @@ gitGraph
 <div class="sourceCode" id="cb32"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Audit app 🏥</span></span>
 <span id="cb32-2"><a href="#cb32-2"></a><span class="at">  </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
 <span id="cb32-3"><a href="#cb32-3"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> shinyValidator::audit_app(load_testing = FALSE, profile_code = FALSE, check_reactivity = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="link-to-github" class="slide level2"><h2>Link to GitHub</h2>
-<p>Create a remote repository on GitHub and add it to the current project:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>usethis<span class="sc">::</span><span class="fu">use_github</span>() <span class="co"># make sure to have a valid GITHUB_PAT</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="run-our-first-pipeline" class="slide level2"><h2>Run our first pipeline</h2>
 <ol type="1">
 <li>Make sure GitHub <a href="https://github.com/DivadNojnarg/RtmpXU8dBM/settings/pages">Pages</a> is enabled.</li>

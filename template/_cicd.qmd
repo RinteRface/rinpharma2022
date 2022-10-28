@@ -93,17 +93,6 @@ Modify GitHub actions yaml file:
   run: shinyValidator::audit_app(load_testing = FALSE, profile_code = FALSE, check_reactivity = FALSE)
 ```
 
-## Link to GitHub
-
-Create a remote repository on GitHub and add it to the current project:
-
-```{r}
-#| eval: false
-#| echo: true
-usethis::use_github() # make sure to have a valid GITHUB_PAT
-# ...
-```
-
 ## Run our first pipeline
 
 1. Make sure GitHub [Pages](https://github.com/DivadNojnarg/RtmpXU8dBM/settings/pages) is enabled.

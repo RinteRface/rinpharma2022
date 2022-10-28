@@ -1,6 +1,10 @@
 # Improve {.vertical-center}
 
+Your turn 🎮
+
 ## Disable other checks
+
+Modify the script created in `./app_audit.R`.
 
 ```{r}
 #| eval: false
@@ -8,7 +12,6 @@
 #| code-line-numbers: "2-5"
 shinyValidator::audit_app(
   load_testing = FALSE, 
-  coverage = FALSE, 
   profile_code = FALSE, 
   check_reactivity = FALSE
 )
@@ -68,6 +71,19 @@ fluidPage(
 ## Add server testing {auto-animate=true}
 
 ```{r}
+dracula_card(
+  borderColor = "green",
+  outline = TRUE,
+  dracula_text(
+    color = "green",
+    weight = "bold",
+    size = "lg",
+    "Goal: test reactivity and how pieces work together ..."
+  )
+)
+```
+
+```{r}
 #| eval: false
 #| echo: true
 usethis::use_test("app-server-test")
@@ -105,10 +121,13 @@ dracula_card(
 )
 ```
 
+Run `./app_audit.R` and have a look at the coverage tab.
+
 ## Customize Crash test
 
 Leverage `{shinytest2}` power^[See: https://rstudio.github.io/shinytest2/articles/in-depth.html], `app` being the Shiny app to audit. 
 
+::: {.small}
 ```{r}
 #| eval: false
 #| echo: true
@@ -119,15 +138,33 @@ shinyValidator::audit_app(
     app$get_screenshot("plop.png")
   },
   load_testing = FALSE, 
-  coverage = FALSE, 
   profile_code = FALSE, 
   check_reactivity = FALSE
 )
 ```
+:::
 
+- Control inputs with `$set_inputs()`. 
+- Take screenshot with `$get_screenshot()`.
+
+Run `./app_audit.R` and have a look at the screenshots
 
 ## Output checks (1/3)
 
+```{r}
+dracula_card(
+  borderColor = "green",
+  outline = TRUE,
+  dracula_text(
+    color = "green",
+    weight = "bold",
+    size = "lg",
+    "Goal: track if an output has changed after a commit..."
+  )
+)
+```
+
+::: {.xsmall}
 Create this function in `helpers.R`:
 
 ```{r}
@@ -148,7 +185,7 @@ output$distPlot <- renderPlot({
 })
 ```
 
-Enable output check in `audit_app.R`:
+Enable output check in `./app_audit.R`:
 
 ```{r}
 #| eval: false
@@ -156,12 +193,13 @@ Enable output check in `audit_app.R`:
 #| code-line-numbers: "6"
 shinyValidator::audit_app(
   load_testing = FALSE, 
-  coverage = FALSE, 
   profile_code = FALSE, 
   check_reactivity = FALSE, 
   output_validation = TRUE
 )
 ```
+
+:::
 
 ## Output checks (2/3) {auto-animate=true}
 
@@ -205,10 +243,10 @@ dracula_card(
 
 ## Output checks (3/3) 
 
-:::: {.columns}
+:::: {.columns .small}
 
 ::: {.column width="50%"}
-We slightly modify `make_hist()`:
+1. We slightly modify `make_hist()`:
 
 ```{r}
 #| eval: false
@@ -218,7 +256,7 @@ make_hist <- function(val) {
 }
 ```
 
-And run the test again:
+2. Run the test again:
 
 ```{r}
 #| eval: false
@@ -226,7 +264,7 @@ And run the test again:
 devtools::test()
 ```
 
-Failure may be reviewed with:
+3. Failure may be reviewed with:
 
 ```{r}
 #| eval: false
@@ -234,7 +272,7 @@ Failure may be reviewed with:
 testthat::snapshot_review('basic-plot')
 ```
 
-Run `audit_app`
+4. Run `./app_audit.R` script and look at the outputs tab.
 :::
 
 :::{.column width="50%"}
@@ -247,6 +285,20 @@ title="Output validation widget with {diffviewer}" width="100%" height="550px" s
 
 ## Performance: Code profiling (1/2)
 
+```{r}
+dracula_card(
+  borderColor = "green",
+  outline = TRUE,
+  dracula_text(
+    color = "green",
+    weight = "bold",
+    size = "lg",
+    "Goal: track any performance bottleneck."
+  )
+)
+```
+
+::: {.xsmall}
 Add this function to `helpers.R`^[Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html]:
 
 ```{r}
@@ -273,9 +325,11 @@ app_server <- function(input, output, session) {
 }
 ```
 
+:::
+
 ## Performance: Code profiling (2/3)
 
-We have to modify the custom headless script by adding a __timeout__:
+Modify the custom headless script by adding a __timeout__:
 
 ```{r}
 #| eval: false
@@ -288,15 +342,12 @@ shinyValidator::audit_app(
   },
   timeout = 15,
   load_testing = FALSE, 
-  coverage = FALSE, 
   profile_code = TRUE, 
   check_reactivity = FALSE
 )
 ```
 
-Run the pipeline, wait and review the 
-report.
-
+Run `./app_audit.R` and have a look at the profiling tab.
 
 ## Performance: Code profiling (3/3)
 

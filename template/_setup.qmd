@@ -99,6 +99,8 @@ devtools::document() # update help
 renv::snapshot()
 ```
 
+Review the file structure
+
 # {shinyValidator}: step by step
 
 ## Overall concept
@@ -148,16 +150,12 @@ flowchart TD
 audit_app <- function(
   headless_actions = NULL,
   timeout = NULL,
-  workers = 5,
   scope = c("manual", "DMC", "POC"),
   output_validation = FALSE,
   coverage = TRUE,
   load_testing = TRUE,
   profile_code = TRUE,
   check_reactivity = TRUE,
-  flow = FALSE,
-  debug = FALSE,
-  port = httpuv::randomPort(),
   ...
 ) {
   ###
@@ -287,10 +285,11 @@ headless action are passed:
 title="shinyValidator html report" width="100%" height="100%">
 </iframe>
 
-## Your turn
+## Your turn 🎮
 
-1. Call `run_audit(scope = "POC")`.
-2. Look at the logs messages.
-3. When done open `public/index.html` (external browser).
-4. Explore the report. 
-5. Modify app code and rerun ...
+1. Create a new script `./app_audit.R`.
+2. Write and call `run_audit(scope = "POC")`.
+3. Look at the logs messages.
+4. When done open `public/index.html` (external browser).
+5. Explore the report. 
+6. Modify app code and rerun ...
