@@ -185,7 +185,7 @@ output$distPlot <- renderPlot({
 })
 ```
 
-Enable output check in `./app_audit.R`:
+Enable output check in `shinyValidator::audit_app`:
 
 ```{r}
 #| eval: false
