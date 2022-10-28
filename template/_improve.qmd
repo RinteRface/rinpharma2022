@@ -208,7 +208,7 @@ Create a new test:
 ```{r}
 #| eval: false
 #| echo: true
-usethis::use_test("test-base-plot")
+usethis::use_test("base-plot")
 ```
 
 ## Output checks (2/3) {auto-animate=true}
