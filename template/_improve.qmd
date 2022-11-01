@@ -87,6 +87,19 @@ Run `shinyValidator::audit_app` and have a look at the coverage tab.
 
 ## Customize Crash test
 
+```{r}
+dracula_card(
+  borderColor = "green",
+  outline = TRUE,
+  dracula_text(
+    color = "green",
+    weight = "bold",
+    size = "lg",
+    "Goal: UI feature testing. Is the app starting? Is the background dark? ..."
+  )
+)
+```
+
 Leverage `{shinytest2}` power^[See: https://rstudio.github.io/shinytest2/articles/in-depth.html], `app` being the Shiny app to audit. 
 
 ::: {.small}
@@ -106,10 +119,7 @@ shinyValidator::audit_app(
 ```
 :::
 
-- Control inputs with `$set_inputs()`. 
-- Take screenshot with `$get_screenshot()`.
-
-Run `shinyValidator::audit_app` and have a look at the screenshots.
+Run the above code and have a look at the screenshots.
 
 ## Output checks (1/3)
 
@@ -315,3 +325,61 @@ Run `shinyValidator::audit_app` and have a look at the profiling tab.
 
 <iframe src="./assets/code-profile-example/code-profile.html"
 title="Output validation widget with {diffviewer}" width="100%" height="550px" style="margin-left: 30px">
+
+## Performance: Load testing (1/2)
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+dracula_card(
+  borderColor = "green",
+  outline = TRUE,
+  dracula_text(
+    color = "green",
+    weight = "bold",
+    size = "lg",
+    "Goal: Check if the app can support concurrent user sessions."
+  )
+)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "Load testing might not work well at the moment..."
+  )
+)
+```
+:::
+
+::::
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "7"
+shinyValidator::audit_app(
+  {
+    app$set_inputs(obs = 1000, timeout_ = 15 * 1000)
+    app$get_screenshot("plop.png")
+  },
+  timeout = 15,
+  load_testing = TRUE, 
+  profile_code = TRUE, 
+  check_reactivity = FALSE
+)
+```
+
+## Performance: Load testing (2/2)
+
+<iframe src="./assets/load-test-example/load-test.html"
+title="Load test report for a non-optimized app." width="100%" height="550px" style="margin-left: 30px">
+</iframe>
+

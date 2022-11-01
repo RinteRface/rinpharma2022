@@ -31,3 +31,8 @@ dracula_card(
 
 ## Thank you! {.vertical-center}
 
+::: {.text-center}
+Follow me on [Fosstodon](https://fosstodon.org/web/home).
+@davidgranjon@fosstodon.org
+:::
+
