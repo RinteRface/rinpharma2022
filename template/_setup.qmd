@@ -304,9 +304,10 @@ the background with `{callr}`, what `{shinyValidator}` is doing.]:
 # Start the app 
 library(shinytest2)
 headless_app <- AppDriver$new("./app.R")
-# View the app for debugging
+# View the app for debugging (does not work from Workbench!)
 headless_app$view()
 headless_app$set_inputs(obs = 1)
+headless_app$get_value(input = "obs")
 # You can also run JS code!
 headless_app$run_js(
   "$('#obs')

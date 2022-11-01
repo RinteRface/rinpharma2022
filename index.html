@@ -855,22 +855,23 @@ graph LR
 <div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|2|3|5|6|19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Start the app </span></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="fu">library</span>(shinytest2)</span>
 <span id="cb14-3"><a href="#cb14-3"></a>headless_app <span class="ot">&lt;-</span> AppDriver<span class="sc">$</span><span class="fu">new</span>(<span class="st">"./app.R"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="co"># View the app for debugging</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co"># View the app for debugging (does not work from Workbench!)</span></span>
 <span id="cb14-5"><a href="#cb14-5"></a>headless_app<span class="sc">$</span><span class="fu">view</span>()</span>
 <span id="cb14-6"><a href="#cb14-6"></a>headless_app<span class="sc">$</span><span class="fu">set_inputs</span>(<span class="at">obs =</span> <span class="dv">1</span>)</span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="co"># You can also run JS code!</span></span>
-<span id="cb14-8"><a href="#cb14-8"></a>headless_app<span class="sc">$</span><span class="fu">run_js</span>(</span>
-<span id="cb14-9"><a href="#cb14-9"></a>  <span class="st">"$('#obs')</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a><span class="st">    .data('shiny-input-binding')</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="st">    .setValue(</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="st">      $('#obs'), </span></span>
-<span id="cb14-13"><a href="#cb14-13"></a><span class="st">      100</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a><span class="st">    );</span></span>
-<span id="cb14-15"><a href="#cb14-15"></a><span class="st">  "</span></span>
-<span id="cb14-16"><a href="#cb14-16"></a>)</span>
-<span id="cb14-17"><a href="#cb14-17"></a><span class="co"># Now you can call any function</span></span>
-<span id="cb14-18"><a href="#cb14-18"></a><span class="co"># Close the connection before leaving </span></span>
-<span id="cb14-19"><a href="#cb14-19"></a>headless_app<span class="sc">$</span><span class="fu">stop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-7"><a href="#cb14-7"></a>headless_app<span class="sc">$</span><span class="fu">get_value</span>(<span class="at">input =</span> <span class="st">"obs"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co"># You can also run JS code!</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>headless_app<span class="sc">$</span><span class="fu">run_js</span>(</span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="st">"$('#obs')</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="st">    .data('shiny-input-binding')</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="st">    .setValue(</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="st">      $('#obs'), </span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="st">      100</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="st">    );</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="st">  "</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a>)</span>
+<span id="cb14-18"><a href="#cb14-18"></a><span class="co"># Now you can call any function</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a><span class="co"># Close the connection before leaving </span></span>
+<span id="cb14-20"><a href="#cb14-20"></a>headless_app<span class="sc">$</span><span class="fu">stop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <p><img data-src="assets/images/png/headless-test-debug.png" alt="Headless test debugging tools."></p>
