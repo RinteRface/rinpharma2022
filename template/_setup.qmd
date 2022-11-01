@@ -303,7 +303,7 @@ the background with `{callr}`, what `{shinyValidator}` is doing.]:
 #| code-line-numbers: "|2|3|5|6|19"
 # Start the app 
 library(shinytest2)
-headless_app <- AppDriver$new()
+headless_app <- AppDriver$new("./app.R")
 # View the app for debugging
 headless_app$view()
 headless_app$set_inputs(obs = 1)

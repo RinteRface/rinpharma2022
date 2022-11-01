@@ -854,7 +854,7 @@ graph LR
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|2|3|5|6|19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Start the app </span></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="fu">library</span>(shinytest2)</span>
-<span id="cb14-3"><a href="#cb14-3"></a>headless_app <span class="ot">&lt;-</span> AppDriver<span class="sc">$</span><span class="fu">new</span>()</span>
+<span id="cb14-3"><a href="#cb14-3"></a>headless_app <span class="ot">&lt;-</span> AppDriver<span class="sc">$</span><span class="fu">new</span>(<span class="st">"./app.R"</span>)</span>
 <span id="cb14-4"><a href="#cb14-4"></a><span class="co"># View the app for debugging</span></span>
 <span id="cb14-5"><a href="#cb14-5"></a>headless_app<span class="sc">$</span><span class="fu">view</span>()</span>
 <span id="cb14-6"><a href="#cb14-6"></a>headless_app<span class="sc">$</span><span class="fu">set_inputs</span>(<span class="at">obs =</span> <span class="dv">1</span>)</span>
