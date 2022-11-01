@@ -28,6 +28,44 @@ usethis::use_test("dummy")
 usethis::use_git()
 ```
 
+## Put some real server code
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Copy this into `app_server.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+output$distPlot <- renderPlot({
+  hist(rnorm(input$obs))
+})
+```
+:::
+
+::: {.column width="50%"}
+Copy this into `app_ui.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+fluidPage(
+  sliderInput(
+    "obs",
+    "Number of observations:",
+    min = 0,
+    max = 1000,
+    value = 500
+  ),
+  plotOutput("distPlot")
+)
+```
+:::
+
+::::
+
+
 ## Create empty GitHub repo
 
 Browse to [GitHub](https://github.com/) and create an empty repository called `<PKG>` matching the previously created package. 
@@ -225,7 +263,7 @@ graph LR
 
 ::::
 
-## Audit app: headless manipulation
+## Audit app: headless manipulation (1/2)
 
 :::: {.columns}
 
@@ -249,6 +287,47 @@ audit_app({
 ::::
 
 This code is run during crash test, profiling and reactivity check.
+
+## Headless manipulation: your turn 🎮 (2/2)
+
+:::: {.columns}
+
+::: {.column width="50%" .xsmall}
+
+Run the following code step by step^[Notice the app blocks the main R process but you could run it in
+the background with `{callr}`, what `{shinyValidator}` is doing.]: 
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "|2|3|5|6|19"
+# Start the app 
+library(shinytest2)
+headless_app <- AppDriver$new()
+# View the app for debugging
+headless_app$view()
+headless_app$set_inputs(obs = 1)
+# You can also run JS code!
+headless_app$run_js(
+  "$('#obs')
+    .data('shiny-input-binding')
+    .setValue(
+      $('#obs'), 
+      100
+    );
+  "
+)
+# Now you can call any function
+# Close the connection before leaving 
+headless_app$stop()
+```
+:::
+
+::: {.column width="50%"}
+![](assets/images/png/headless-test-debug.png){fig-alt="Headless test debugging tools."}
+:::
+
+::::
 
 ## About monkey testing (1/2)
 

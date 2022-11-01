@@ -30,44 +30,6 @@ dracula_card(
 )
 ```
 
-## Put some real server code
-
-:::: {.columns}
-
-::: {.column width="50%"}
-Copy this into `app_server.R`:
-
-```{r}
-#| eval: false
-#| echo: true
-output$distPlot <- renderPlot({
-  hist(rnorm(input$obs))
-})
-```
-:::
-
-::: {.column width="50%"}
-Copy this into `app_ui.R`:
-
-```{r}
-#| eval: false
-#| echo: true
-fluidPage(
-  sliderInput(
-    "obs",
-    "Number of observations:",
-    min = 0,
-    max = 1000,
-    value = 500
-  ),
-  plotOutput("distPlot")
-)
-```
-:::
-
-::::
-
-
 ## Add server testing {auto-animate=true}
 
 ```{r}
