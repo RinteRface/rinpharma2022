@@ -1101,8 +1101,9 @@ graph LR
 </div>
 </div>
 </div>
-<div class="xsmall">
-<p>Add this function to <code>helpers.R</code><sup>1</sup>:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Add this<sup>1</sup> to <code>helpers.R</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>slow_func <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
 <span id="cb27-2"><a href="#cb27-2"></a>  vec <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="co"># Or vec = c()</span></span>
@@ -1111,7 +1112,8 @@ graph LR
 <span id="cb27-5"><a href="#cb27-5"></a>  vec</span>
 <span id="cb27-6"><a href="#cb27-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Add it to <code>app_server.R</code>:</p>
+</div><div class="column" style="width:50%;">
+<p>Call it in <code>app_server.R</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>app_server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
 <span id="cb28-2"><a href="#cb28-2"></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
@@ -1119,6 +1121,7 @@ graph LR
 <span id="cb28-4"><a href="#cb28-4"></a>    <span class="fu">make_hist</span>(input<span class="sc">$</span>obs)</span>
 <span id="cb28-5"><a href="#cb28-5"></a>  })</span>
 <span id="cb28-6"><a href="#cb28-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 <aside><ol class="aside-footnotes"><li id="fn5"><p>Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html</p></li></ol></aside></section><section id="performance-code-profiling-23" class="slide level2"><h2>Performance: Code profiling (2/3)</h2>

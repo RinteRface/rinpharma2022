@@ -270,8 +270,9 @@ dracula_card(
 )
 ```
 
-::: {.xsmall}
-Add this function to `helpers.R`^[Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html]:
+:::: {.columns}
+::: {.column width="50%"}
+Add this^[Stolen with ❤️ from Efficient R programming book: https://csgillespie.github.io/efficientR/programming.html] to `helpers.R`:
 
 ```{r}
 #| eval: false
@@ -283,8 +284,10 @@ slow_func <- function(n) {
   vec
 }
 ```
+:::
 
-Add it to `app_server.R`:
+::: {.column width="50%"}
+Call it in `app_server.R`:
 
 ```{r}
 #| eval: false
@@ -296,8 +299,8 @@ app_server <- function(input, output, session) {
   })
 }
 ```
-
 :::
+::::
 
 ## Performance: Code profiling (2/3)
 
