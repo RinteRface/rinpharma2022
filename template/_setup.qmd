@@ -372,3 +372,21 @@ title="shinyValidator html report" width="100%" height="100%">
 3. When done open `public/index.html` (external browser).
 4. Explore the report. 
 5. Modify app code and rerun ...
+
+## Pro tip
+
+Cleanup between each run!
+
+```{r}
+dracula_card(
+  borderColor = "red",
+  outline = TRUE,
+  dracula_text(
+    color = "red",
+    weight = "bold",
+    size = "lg",
+    "After each `shinyValidator::audit_app`, 
+    remove the /public folder and restart the R session."
+  )
+)
+```
