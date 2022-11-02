@@ -39,6 +39,19 @@ cd rinpharma2022
 
 Then run `renv::restore()` to install the dependencies.
 
+```{r}
+dracula_card(
+  borderColor = "green",
+  outline = TRUE,
+  dracula_text(
+    color = "green",
+    weight = "bold",
+    size = "lg",
+    "During the workshop day, a live sandbox platform is accessible at rstd.io/class. The id will be given in the zoom chat."
+  )
+)
+```
+
 ## Pre-requisites
 
 If you want to run `{shinyValidator}` locally (not on CI/CD), you must have:
@@ -47,6 +60,7 @@ If you want to run `{shinyValidator}` locally (not on CI/CD), you must have:
 - A chrome browser installed like [chromium](https://www.chromium.org/getting-involved/download-chromium/). 
 
 - `git` installed and a [GitHub](https://github.com/) account.
+- A recent R version, if possible `R>= 4.1.0`.
 
 ```{r}
 dracula_card(
