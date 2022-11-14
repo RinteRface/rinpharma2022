@@ -36,3 +36,13 @@ Follow me on [Fosstodon](https://fosstodon.org/web/home).
 @davidgranjon@fosstodon.org
 :::
 
+## Disclaimer
+
+:::{.small}
+
+- This presentation is based on __publicly available information__ (including data relating to non-Novartis products or approaches).
+- The views presented are the views of the __presenter__, not necessarily those of Novartis.
+- These slides are indented for __educational__ purpose only and for the __personal__ use of the audience. These slides are __not intended for wider__ distribution outside the intended purpose without presenter approval.
+- The content of this slide deck is __accurate__ to the best of the presenter's knowledge at the time of production.
+
+:::
